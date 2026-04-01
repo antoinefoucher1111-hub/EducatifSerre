@@ -26,31 +26,6 @@
         ]
     },
     {
-        "id": "0f53447070ea2376",
-        "type": "change",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 190,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e64b27a973408ff8",
         "type": "http response",
         "z": "0b147d39fb575ebc",
@@ -110,5 +85,179 @@
                 "e64b27a973408ff8"
             ]
         ]
+    },
+    {
+        "id": "7e0e4590add9573a",
+        "type": "http in",
+        "z": "0b147d39fb575ebc",
+        "name": "Changer le Mode",
+        "url": "/api/plante/mode",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "bcbfbe052c7d83c7"
+            ]
+        ]
+    },
+    {
+        "id": "bcbfbe052c7d83c7",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Sauvegarder Mode",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mode_actuel",
+                "pt": "flow",
+                "to": "payload.mode",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "fdc4cd6279104389"
+            ]
+        ]
+    },
+    {
+        "id": "fdc4cd6279104389",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "Confirmation Mode",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9bdcd142b51cbbfc",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "Capteur (30 degrés)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temp_air\": 30}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "36645593e2c06d24"
+            ]
+        ]
+    },
+    {
+        "id": "36645593e2c06d24",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Est-on en mode Auto ?",
+        "property": "mode_actuel",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "b7642faeee927d56"
+            ]
+        ]
+    },
+    {
+        "id": "b7642faeee927d56",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Température > 28 ?",
+        "property": "payload.temp_air",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "28",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "848057ea99541ac0"
+            ]
+        ]
+    },
+    {
+        "id": "848057ea99541ac0",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre : Allumer Ventilateur",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ventilateur",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 340,
+        "wires": [
+            [
+                "fb43b14d88fbad55"
+            ]
+        ]
+    },
+    {
+        "id": "fb43b14d88fbad55",
+        "type": "debug",
+        "z": "0b147d39fb575ebc",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 460,
+        "wires": []
     }
 ]
