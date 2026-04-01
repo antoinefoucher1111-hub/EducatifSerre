@@ -320,7 +320,7 @@
         "skipBodyParsing": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "bcbfbe052c7d83c7"
@@ -346,8 +346,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 350,
-        "y": 160,
+        "x": 310,
+        "y": 120,
         "wires": [
             [
                 "fdc4cd6279104389"
@@ -369,25 +369,25 @@
         "id": "9bdcd142b51cbbfc",
         "type": "inject",
         "z": "0b147d39fb575ebc",
-        "name": "Capteur (30 degrés)",
+        "name": "Simulation Arduino (5 min)",
         "props": [
             {
                 "p": "payload"
             }
         ],
-        "repeat": "",
+        "repeat": "300",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"temp_air\": 30}",
+        "payload": "{\"air\":{\"temp\":26.5,\"hum\":40},\"sol_moyenne\":{\"temp\":22,\"hum\":35},\"lumiere\":450,\"erreurs\":false}",
         "payloadType": "json",
-        "x": 130,
+        "x": 120,
         "y": 220,
         "wires": [
             [
-                "36645593e2c06d24",
-                "ca5a29b66d24410a"
+                "ca5a29b66d24410a",
+                "7d6d3a4a7fcbfeff"
             ]
         ]
     },
@@ -408,7 +408,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 360,
+        "x": 400,
         "y": 220,
         "wires": [
             [
@@ -485,7 +485,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 1060,
@@ -502,8 +503,8 @@
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 90,
-        "y": 320,
+        "x": 110,
+        "y": 380,
         "wires": [
             [
                 "7250843023e8c1fe"
@@ -563,7 +564,7 @@
         "statusCode": "",
         "headers": {},
         "x": 680,
-        "y": 300,
+        "y": 280,
         "wires": []
     },
     {
@@ -579,8 +580,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 920,
-        "y": 320,
+        "x": 900,
+        "y": 300,
         "wires": []
     },
     {
@@ -593,8 +594,8 @@
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 360,
+        "x": 120,
+        "y": 420,
         "wires": [
             [
                 "b56a3d146a9c7436"
@@ -854,7 +855,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 100,
-        "y": 540,
+        "y": 260,
         "wires": [
             [
                 "7250843023e8c1fe"
@@ -882,10 +883,43 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 100,
-        "y": 580,
+        "y": 300,
         "wires": [
             [
                 "7250843023e8c1fe"
+            ]
+        ]
+    },
+    {
+        "id": "7d6d3a4a7fcbfeff",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Capteurs OK ?",
+        "property": "payload.erreurs",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "36645593e2c06d24"
+            ],
+            [
+                "fb43b14d88fbad55"
             ]
         ]
     }
