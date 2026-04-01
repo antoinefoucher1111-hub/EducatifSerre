@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "id": "0b147d39fb575ebc",
+        "type": "tab",
+        "label": "Flux 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "90ad1f22301e4099",
+        "type": "complete",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "scope": [],
+        "uncaught": false,
+        "x": 280,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    }
+]
