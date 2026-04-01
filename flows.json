@@ -8,16 +8,77 @@
         "env": []
     },
     {
-        "id": "90ad1f22301e4099",
-        "type": "complete",
+        "id": "df4cd77596d0ad60",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "e64b27a973408ff8"
+            ]
+        ]
+    },
+    {
+        "id": "2293505a3c6c1d19",
+        "type": "http in",
         "z": "0b147d39fb575ebc",
         "name": "",
-        "scope": [],
-        "uncaught": false,
-        "x": 280,
-        "y": 160,
+        "url": "/api/data",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "df4cd77596d0ad60"
+            ]
+        ]
+    },
+    {
+        "id": "0f53447070ea2376",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 180,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "e64b27a973408ff8",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 450,
+        "y": 60,
+        "wires": []
     }
 ]
