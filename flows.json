@@ -8,6 +8,223 @@
         "env": []
     },
     {
+        "id": "7c68e5354ffa8fcf",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "559fcc6d760c4cc7",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "62982cb8e8b95b6f",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "7c68e5354ffa8fcf",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "559fcc6d760c4cc7",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "777f16f625987c7b",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "62982cb8e8b95b6f",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": false,
+        "groupType": "default"
+    },
+    {
+        "id": "9b27f9ad1251814e",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "7fd6b277febe44d3",
+        "type": "ui_tab",
+        "name": "Ma Serre",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "266b2166fa4f4bac",
+        "type": "ui_group",
+        "name": "Température",
+        "tab": "7fd6b277febe44d3",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7cd7ac6d969288e9",
+        "type": "ui_group",
+        "name": "Contrôles Manuels",
+        "tab": "7fd6b277febe44d3",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "2293505a3c6c1d19",
         "type": "http in",
         "z": "0b147d39fb575ebc",
@@ -41,23 +258,29 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Vérif Admin",
-        "property": "payload.username ",
+        "property": "payload.username",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
                 "v": "admin",
                 "vt": "str"
+            },
+            {
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 290,
-        "y": 100,
+        "outputs": 2,
+        "x": 270,
+        "y": 60,
         "wires": [
             [
                 "c71d4fe4d2cd8db1"
+            ],
+            [
+                "266bf3714dc105f3"
             ]
         ]
     },
@@ -96,8 +319,8 @@
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 200,
+        "x": 120,
+        "y": 160,
         "wires": [
             [
                 "bcbfbe052c7d83c7"
@@ -124,7 +347,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 200,
+        "y": 160,
         "wires": [
             [
                 "fdc4cd6279104389"
@@ -139,7 +362,7 @@
         "statusCode": "",
         "headers": {},
         "x": 610,
-        "y": 180,
+        "y": 120,
         "wires": []
     },
     {
@@ -159,11 +382,12 @@
         "topic": "",
         "payload": "{\"temp_air\": 30}",
         "payloadType": "json",
-        "x": 150,
-        "y": 280,
+        "x": 130,
+        "y": 220,
         "wires": [
             [
-                "36645593e2c06d24"
+                "36645593e2c06d24",
+                "ca5a29b66d24410a"
             ]
         ]
     },
@@ -184,8 +408,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 380,
-        "y": 280,
+        "x": 360,
+        "y": 220,
         "wires": [
             [
                 "b7642faeee927d56"
@@ -196,24 +420,32 @@
         "id": "b7642faeee927d56",
         "type": "switch",
         "z": "0b147d39fb575ebc",
-        "name": "Température > 28 ?",
+        "name": "Température > Seuil ?",
         "property": "payload.temp_air",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "gt",
-                "v": "28",
-                "vt": "str"
+                "v": "seuil_temp_max",
+                "vt": "flow"
+            },
+            {
+                "t": "lte",
+                "v": "seuil_temp_max",
+                "vt": "flow"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 610,
-        "y": 260,
+        "outputs": 2,
+        "x": 620,
+        "y": 200,
         "wires": [
             [
                 "848057ea99541ac0"
+            ],
+            [
+                "3b214996d32de02f"
             ]
         ]
     },
@@ -236,8 +468,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 340,
+        "x": 820,
+        "y": 160,
         "wires": [
             [
                 "fb43b14d88fbad55"
@@ -256,8 +488,405 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
+        "x": 1060,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9b6fe1f967285350",
+        "type": "http in",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre Manuel API",
+        "url": "/api/forcer",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "7250843023e8c1fe"
+            ]
+        ]
+    },
+    {
+        "id": "7250843023e8c1fe",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Est-ce en Manuel ?",
+        "property": "mode_actuel",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "manual",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "f5083363e996cb67",
+                "dcee870708468bcb"
+            ],
+            [
+                "422b198c85dec333"
+            ]
+        ]
+    },
+    {
+        "id": "422b198c85dec333",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "Refusé (Mode Auto)",
+        "statusCode": "403",
+        "headers": {},
         "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f5083363e996cb67",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre Accepté ",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "dcee870708468bcb",
+        "type": "debug",
+        "z": "0b147d39fb575ebc",
+        "name": "Actionneur (Pompe)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4a6d13dea546c1ea",
+        "type": "http in",
+        "z": "0b147d39fb575ebc",
+        "name": "Nouveaux Seuils API",
+        "url": "/api/seuils",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "b56a3d146a9c7436"
+            ]
+        ]
+    },
+    {
+        "id": "b56a3d146a9c7436",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Sauvegarder Seuil Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "seuil_temp_max",
+                "pt": "flow",
+                "to": "payload.temp_max",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 400,
+        "wires": [
+            [
+                "93d8d8dea3b23d85"
+            ]
+        ]
+    },
+    {
+        "id": "93d8d8dea3b23d85",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "Seuils Mis à Jour",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3b214996d32de02f",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre : Éteindre Ventilateur",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ventilateur",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "fb43b14d88fbad55"
+            ]
+        ]
+    },
+    {
+        "id": "6b72f06cbddd48e0",
+        "type": "http in",
+        "z": "0b147d39fb575ebc",
+        "name": "Demande de Données",
+        "url": "/api/data",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "870a84b948326877"
+            ]
+        ]
+    },
+    {
+        "id": "870a84b948326877",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Préparer le Résumé",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"mode_actuel\":\"Voir post-it\",\"seuil_temperature\":\"Voir post-it\",\"etat_systeme\":\"En ligne\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 500,
+        "wires": [
+            [
+                "9c6905d77fd19bce"
+            ]
+        ]
+    },
+    {
+        "id": "9c6905d77fd19bce",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "Envoi des Données",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "266bf3714dc105f3",
+        "type": "http response",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 820,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ca5a29b66d24410a",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler le Chiffre",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temp_air",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "874ecdb128d370e2",
+                "87388404f8b8a7b5"
+            ]
+        ]
+    },
+    {
+        "id": "874ecdb128d370e2",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "266b2166fa4f4bac",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "thermomètre",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "87388404f8b8a7b5",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "266b2166fa4f4bac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14c0209580e95f8b",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Allumer Pompe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"pompe_eau\": true}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "7250843023e8c1fe"
+            ]
+        ]
+    },
+    {
+        "id": "5cc61b218a43aedf",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Eteindre Pompe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"pompe_eau\": false}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 580,
+        "wires": [
+            [
+                "7250843023e8c1fe"
+            ]
+        ]
     }
 ]
