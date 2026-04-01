@@ -8,40 +8,20 @@
         "env": []
     },
     {
-        "id": "df4cd77596d0ad60",
-        "type": "function",
-        "z": "0b147d39fb575ebc",
-        "name": "function 1",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 80,
-        "wires": [
-            [
-                "e64b27a973408ff8"
-            ]
-        ]
-    },
-    {
         "id": "2293505a3c6c1d19",
         "type": "http in",
         "z": "0b147d39fb575ebc",
-        "name": "",
-        "url": "/api/data",
-        "method": "get",
+        "name": "Entrée API",
+        "url": "/api/test",
+        "method": "post",
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 120,
         "y": 60,
         "wires": [
             [
-                "df4cd77596d0ad60"
+                "a8ab1bf9752fdf4b"
             ]
         ]
     },
@@ -74,11 +54,61 @@
         "id": "e64b27a973408ff8",
         "type": "http response",
         "z": "0b147d39fb575ebc",
-        "name": "",
+        "name": "Accès Autorisé",
         "statusCode": "",
         "headers": {},
-        "x": 450,
+        "x": 700,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "a8ab1bf9752fdf4b",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Vérif Admin",
+        "property": "payload.username ",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "admin",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "c71d4fe4d2cd8db1"
+            ]
+        ]
+    },
+    {
+        "id": "c71d4fe4d2cd8db1",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Vérif Mot de passe",
+        "property": "payload.password",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "secret",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 60,
+        "wires": [
+            [
+                "e64b27a973408ff8"
+            ]
+        ]
     }
 ]
