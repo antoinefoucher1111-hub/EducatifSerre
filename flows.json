@@ -1215,11 +1215,11 @@
     {
         "id": "81b1db97f4137d3b",
         "type": "ui_slider",
-        "z": "0b147d39fb575ebc",
+        "z": "9473ffe937882cd7",
         "name": "Réglage Seuil Hum",
         "label": "Seuil Humidité Sol (%)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "e089eca856728ad6",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -1231,8 +1231,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 1250,
-        "y": 860,
+        "x": 590,
+        "y": 40,
         "wires": [
             [
                 "e20d878fb0343885"
@@ -1242,11 +1242,11 @@
     {
         "id": "6f57963c4245e240",
         "type": "ui_slider",
-        "z": "0b147d39fb575ebc",
+        "z": "9473ffe937882cd7",
         "name": "Réglage Seuil Lux",
         "label": "Seuil Lumière (Lux)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "e089eca856728ad6",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -1258,8 +1258,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 1250,
-        "y": 900,
+        "x": 590,
+        "y": 80,
         "wires": [
             [
                 "692b6961433d97f7"
@@ -1269,12 +1269,12 @@
     {
         "id": "e20d878fb0343885",
         "type": "change",
-        "z": "0b147d39fb575ebc",
+        "z": "9473ffe937882cd7",
         "name": "Mémoriser Seuil Hum",
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_hum_sol",
+                "p": "fraise_seuil_hum",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1285,8 +1285,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 860,
+        "x": 820,
+        "y": 40,
         "wires": [
             []
         ]
@@ -1294,12 +1294,12 @@
     {
         "id": "692b6961433d97f7",
         "type": "change",
-        "z": "0b147d39fb575ebc",
+        "z": "9473ffe937882cd7",
         "name": "Mémoriser Seuil Lux",
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_lux_max",
+                "p": "fraise_seuil_hum",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1310,8 +1310,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 900,
+        "x": 820,
+        "y": 80,
         "wires": [
             []
         ]
@@ -1491,7 +1491,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "CREATE TABLE IF NOT EXISTS logs (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL\n);",
+        "template": "CREATE TABLE IF NOT EXISTS logs_expert (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    culture TEXT,           -- NOUVEAU : Pour savoir si c'est Fraise ou Tomate\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL,\n    etat_pompe BOOLEAN,     -- NOUVEAU : Pour croiser l'arrosage et l'humidité\n    etat_volets TEXT\n);",
         "output": "str",
         "x": 860,
         "y": 860,
@@ -1727,7 +1727,7 @@
         "id": "92c523be397e8236",
         "type": "inject",
         "z": "0b147d39fb575ebc",
-        "name": "",
+        "name": "Injection pour BDD",
         "props": [
             {
                 "p": "payload"
@@ -1744,7 +1744,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 630,
+        "x": 650,
         "y": 880,
         "wires": [
             [
@@ -1957,5 +1957,137 @@
                 "32b1cd2573f62313"
             ]
         ]
+    },
+    {
+        "id": "9473ffe937882cd7",
+        "type": "tab",
+        "label": "Flux 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "58bb8358e6cc5c1a",
+        "type": "ui_slider",
+        "z": "9473ffe937882cd7",
+        "name": "Réglage Seuil Hum",
+        "label": "Seuil Humidité Sol (%)",
+        "tooltip": "",
+        "group": "fb623479fca66072",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "94fd38b13ea91544"
+            ]
+        ]
+    },
+    {
+        "id": "43f6c2545eed6228",
+        "type": "ui_slider",
+        "z": "9473ffe937882cd7",
+        "name": "Réglage Seuil Lux",
+        "label": "Seuil Lumière (Lux)",
+        "tooltip": "",
+        "group": "fb623479fca66072",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1000",
+        "step": "10",
+        "className": "",
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "14fbf3b30a6abc43"
+            ]
+        ]
+    },
+    {
+        "id": "94fd38b13ea91544",
+        "type": "change",
+        "z": "9473ffe937882cd7",
+        "name": "Mémoriser Seuil Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tomate_seuil_hum",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14fbf3b30a6abc43",
+        "type": "change",
+        "z": "9473ffe937882cd7",
+        "name": "Mémoriser Seuil Lux",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tomate_seuil_lux",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f6e39abe38dfd58",
+        "type": "comment",
+        "z": "9473ffe937882cd7",
+        "name": "Partie Tomates",
+        "info": "",
+        "x": 360,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b700031104114c2e",
+        "type": "comment",
+        "z": "9473ffe937882cd7",
+        "name": "Partie Fraises",
+        "info": "",
+        "x": 350,
+        "y": 40,
+        "wires": []
     }
 ]
