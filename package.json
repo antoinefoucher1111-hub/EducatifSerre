@@ -2,7 +2,10 @@
     "name": "Serre-Educative",
     "description": "Serre-Educative",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-dashboard": "3.6.6",
+        "node-red-node-sqlite": "1.1.1"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flows.json",
