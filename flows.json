@@ -225,6 +225,26 @@
         "className": ""
     },
     {
+        "id": "d4b412b944b9b9d5",
+        "type": "ui_group",
+        "name": "test",
+        "tab": "7fd6b277febe44d3",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7bee753c65333fc6",
+        "type": "ui_group",
+        "name": "Group 4",
+        "tab": "7fd6b277febe44d3",
+        "order": 4,
+        "disp": true,
+        "width": 6
+    },
+    {
         "id": "2293505a3c6c1d19",
         "type": "http in",
         "z": "0b147d39fb575ebc",
@@ -320,7 +340,7 @@
         "skipBodyParsing": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "bcbfbe052c7d83c7"
@@ -383,7 +403,7 @@
         "payload": "{\"air\":{\"temp\":26.5,\"hum\":40},\"sol_moyenne\":{\"temp\":22,\"hum\":35},\"lumiere\":450,\"erreurs\":false}",
         "payloadType": "json",
         "x": 120,
-        "y": 220,
+        "y": 400,
         "wires": [
             [
                 "ca5a29b66d24410a",
@@ -409,10 +429,11 @@
         "repair": false,
         "outputs": 1,
         "x": 400,
-        "y": 220,
+        "y": 400,
         "wires": [
             [
-                "b7642faeee927d56"
+                "b7642faeee927d56",
+                "e576a61aea7beeba"
             ]
         ]
     },
@@ -439,7 +460,7 @@
         "repair": false,
         "outputs": 2,
         "x": 620,
-        "y": 200,
+        "y": 380,
         "wires": [
             [
                 "848057ea99541ac0"
@@ -468,8 +489,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 820,
-        "y": 160,
+        "x": 860,
+        "y": 360,
         "wires": [
             [
                 "fb43b14d88fbad55"
@@ -489,8 +510,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1060,
-        "y": 120,
+        "x": 1040,
+        "y": 360,
         "wires": []
     },
     {
@@ -504,7 +525,7 @@
         "skipBodyParsing": false,
         "swaggerDoc": "",
         "x": 110,
-        "y": 380,
+        "y": 180,
         "wires": [
             [
                 "7250843023e8c1fe"
@@ -534,7 +555,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 320,
+        "y": 500,
         "wires": [
             [
                 "f5083363e996cb67",
@@ -553,7 +574,7 @@
         "statusCode": "403",
         "headers": {},
         "x": 680,
-        "y": 340,
+        "y": 520,
         "wires": []
     },
     {
@@ -564,7 +585,7 @@
         "statusCode": "",
         "headers": {},
         "x": 680,
-        "y": 280,
+        "y": 460,
         "wires": []
     },
     {
@@ -581,7 +602,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 900,
-        "y": 300,
+        "y": 480,
         "wires": []
     },
     {
@@ -595,7 +616,7 @@
         "skipBodyParsing": false,
         "swaggerDoc": "",
         "x": 120,
-        "y": 420,
+        "y": 220,
         "wires": [
             [
                 "b56a3d146a9c7436"
@@ -622,7 +643,7 @@
         "to": "",
         "reg": false,
         "x": 390,
-        "y": 400,
+        "y": 200,
         "wires": [
             [
                 "93d8d8dea3b23d85"
@@ -637,7 +658,7 @@
         "statusCode": "",
         "headers": {},
         "x": 690,
-        "y": 400,
+        "y": 200,
         "wires": []
     },
     {
@@ -660,7 +681,7 @@
         "to": "",
         "reg": false,
         "x": 880,
-        "y": 220,
+        "y": 400,
         "wires": [
             [
                 "fb43b14d88fbad55"
@@ -678,7 +699,7 @@
         "skipBodyParsing": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 480,
+        "y": 280,
         "wires": [
             [
                 "870a84b948326877"
@@ -705,7 +726,7 @@
         "to": "",
         "reg": false,
         "x": 440,
-        "y": 500,
+        "y": 300,
         "wires": [
             [
                 "9c6905d77fd19bce"
@@ -719,8 +740,8 @@
         "name": "Envoi des Données",
         "statusCode": "",
         "headers": {},
-        "x": 750,
-        "y": 460,
+        "x": 770,
+        "y": 300,
         "wires": []
     },
     {
@@ -754,7 +775,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 260,
+        "y": 440,
         "wires": [
             [
                 "874ecdb128d370e2",
@@ -787,7 +808,7 @@
         "diff": false,
         "className": "",
         "x": 510,
-        "y": 260,
+        "y": 440,
         "wires": []
     },
     {
@@ -799,7 +820,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "label": "chart",
+        "label": "tomates température",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -828,8 +849,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 670,
-        "y": 240,
+        "x": 720,
+        "y": 420,
         "wires": [
             []
         ]
@@ -855,7 +876,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 100,
-        "y": 260,
+        "y": 480,
         "wires": [
             [
                 "7250843023e8c1fe"
@@ -883,7 +904,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 100,
-        "y": 300,
+        "y": 520,
         "wires": [
             [
                 "7250843023e8c1fe"
@@ -913,7 +934,7 @@
         "repair": false,
         "outputs": 2,
         "x": 300,
-        "y": 180,
+        "y": 360,
         "wires": [
             [
                 "36645593e2c06d24"
@@ -921,6 +942,112 @@
             [
                 "fb43b14d88fbad55"
             ]
+        ]
+    },
+    {
+        "id": "e576a61aea7beeba",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Humidité Sol <= 30 ?",
+        "property": "payload.sol_moyenne.hum",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "30",
+                "vt": "str"
+            },
+            {
+                "t": "gt",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 580,
+        "wires": [
+            [
+                "fe0c74116bf55dbd"
+            ],
+            [
+                "bb4eb54810e80031"
+            ]
+        ]
+    },
+    {
+        "id": "fe0c74116bf55dbd",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Allumer Arrosage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.arrosage",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb4eb54810e80031",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Éteindre Arrosage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.arrosage",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4a9ccd9b41ffa75",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 660,
+        "wires": [
+            []
         ]
     }
 ]
