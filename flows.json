@@ -314,6 +314,50 @@
         "hidden": false
     },
     {
+        "id": "ec5ebbbb459a3ba3",
+        "type": "ui_group",
+        "name": "Indicateurs Fraises",
+        "tab": "6dc4d655906c114a",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e089eca856728ad6",
+        "type": "ui_group",
+        "name": "Paramètres Fraises",
+        "tab": "6dc4d655906c114a",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fb623479fca66072",
+        "type": "ui_group",
+        "name": "Paramètres Tomates",
+        "tab": "aca5fac695bb8a4a",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c80b32b32418c521",
+        "type": "ui_group",
+        "name": "Indicateurs Tomates",
+        "tab": "aca5fac695bb8a4a",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "2293505a3c6c1d19",
         "type": "http in",
         "z": "0b147d39fb575ebc",
@@ -1751,13 +1795,38 @@
         ]
     },
     {
+        "id": "14c5e8e42bdca8bb",
+        "type": "inject",
+        "z": "802ece0f3d2ca554",
+        "name": "Déclencheur (5 min)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{     \"air\": { \"temp\": 26.5, \"hum\": 40 },     \"sol_moyenne\": { \"temp\": 22.0, \"hum\": 35 },     \"lumiere\": 450,     \"erreurs\": false }",
+        "payloadType": "json",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "3ae3bb251d539059"
+            ]
+        ]
+    },
+    {
         "id": "81b1db97f4137d3b",
         "type": "ui_slider",
         "z": "9473ffe937882cd7",
         "name": "Réglage Seuil Hum",
         "label": "Seuil Humidité Sol (%)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "e089eca856728ad6",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -1784,7 +1853,7 @@
         "name": "Réglage Seuil Lux",
         "label": "Seuil Lumière (Lux)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "e089eca856728ad6",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -1812,7 +1881,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_hum_sol",
+                "p": "fraise_seuil_hum",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1837,7 +1906,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_lux_max",
+                "p": "fraise_seuil_hum",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1861,7 +1930,7 @@
         "name": "Réglage Seuil Hum",
         "label": "Seuil Humidité Sol (%)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "fb623479fca66072",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -1888,7 +1957,7 @@
         "name": "Réglage Seuil Lux",
         "label": "Seuil Lumière (Lux)",
         "tooltip": "",
-        "group": "7cd7ac6d969288e9",
+        "group": "fb623479fca66072",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -1916,7 +1985,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_hum_sol",
+                "p": "tomate_seuil_hum",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1941,7 +2010,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "seuil_lux_max",
+                "p": "tomate_seuil_lux",
                 "pt": "flow",
                 "to": "payload",
                 "tot": "msg"
@@ -1952,8 +2021,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 860,
-        "y": 380,
+        "x": 820,
+        "y": 340,
         "wires": [
             []
         ]
@@ -1977,74 +2046,5 @@
         "x": 350,
         "y": 40,
         "wires": []
-    },
-    {
-        "id": "ec5ebbbb459a3ba3",
-        "type": "ui_group",
-        "name": "Indicateurs Fraises",
-        "tab": "6dc4d655906c114a",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "e089eca856728ad6",
-        "type": "ui_group",
-        "name": "Paramètres Fraises",
-        "tab": "6dc4d655906c114a",
-        "order": 2,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "fb623479fca66072",
-        "type": "ui_group",
-        "name": "Paramètres Tomates",
-        "tab": "aca5fac695bb8a4a",
-        "order": 2,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c80b32b32418c521",
-        "type": "ui_group",
-        "name": "Indicateurs Tomates",
-        "tab": "aca5fac695bb8a4a",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "14c5e8e42bdca8bb",
-        "type": "inject",
-        "z": "802ece0f3d2ca554",
-        "name": "Déclencheur (5 min)",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "2",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{     \"air\": { \"temp\": 26.5, \"hum\": 40 },     \"sol_moyenne\": { \"temp\": 22.0, \"hum\": 35 },     \"lumiere\": 450,     \"erreurs\": false }",
-        "payloadType": "json",
-        "x": 180,
-        "y": 200,
-        "wires": [
-            [
-                "3ae3bb251d539059"
-            ]
-        ]
     }
 ]
