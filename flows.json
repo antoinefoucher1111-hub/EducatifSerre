@@ -196,7 +196,7 @@
     {
         "id": "7fd6b277febe44d3",
         "type": "ui_tab",
-        "name": "Ma Serre",
+        "name": "1. Vue d'ensemble",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,
@@ -253,9 +253,9 @@
     {
         "id": "8e1386a76a28abc7",
         "type": "ui_tab",
-        "name": "Historique",
+        "name": "4. Analyses & Historique",
         "icon": "dashboard",
-        "order": 2,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -278,6 +278,24 @@
         "order": 2,
         "disp": true,
         "width": 6
+    },
+    {
+        "id": "6dc4d655906c114a",
+        "type": "ui_tab",
+        "name": "2. Culture Fraises",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "aca5fac695bb8a4a",
+        "type": "ui_tab",
+        "name": "3. Culture Tomates",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "2293505a3c6c1d19",
@@ -1687,7 +1705,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Créer JSON Complet",
-        "func": "// On récupère toutes les informations depuis la mémoire (flow)\nvar mode = flow.get(\"mode_actuel\") || \"Inconnu\"; var seuilHum = flow.get(\"seuil_hum_sol\") || 30; var seuilLux = flow.get(\"seuil_lux_max\") || 800; var meteo = flow.get(\"meteo_actuelle\") || \"En attente des capteurs...\";\n// On construit la réponse finale de l'API\nmsg.payload = { \"etat_systeme\": \"En ligne\", \"mode_controle\": mode, \"parametres_auto\": { \"seuil_humidite_sol_min\": seuilHum, \"seuil_lumiere_max\": seuilLux }, \"dernieres_donnees_capteurs\": meteo }; return msg;",
+        "func": "// On récupère toutes les informations depuis la mémoire (flow)\nvar mode = flow.get(\"mode_actuel\") || \"Inconnu\";\nvar seuilHum = flow.get(\"seuil_hum_sol\") || 30;\nvar seuilLux = flow.get(\"seuil_lux_max\") || 800;\nvar meteo = flow.get(\"meteo_actuelle\") || \"En attente des capteurs...\";\n\n// On construit la réponse finale de l'API\nmsg.payload = {\n    \"etat_systeme\": \"En ligne\",\n    \"mode_controle\": mode,\n    \"parametres_auto\": {\n        \"seuil_humidite_sol_min\": seuilHum,\n        \"seuil_lumiere_max\": seuilLux\n    },\n    \"dernieres_donnees_capteurs\": meteo\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
