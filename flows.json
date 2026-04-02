@@ -545,8 +545,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1820,
-        "y": 360,
+        "x": 1800,
+        "y": 380,
         "wires": []
     },
     {
@@ -737,34 +737,7 @@
         "y": 200,
         "wires": [
             [
-                "870a84b948326877"
-            ]
-        ]
-    },
-    {
-        "id": "870a84b948326877",
-        "type": "change",
-        "z": "0b147d39fb575ebc",
-        "name": "Préparer le Résumé",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"mode_actuel\":\"Voir post-it\",\"seuil_temperature\":\"Voir post-it\",\"etat_systeme\":\"En ligne\"}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 340,
-        "y": 200,
-        "wires": [
-            [
-                "9c6905d77fd19bce"
+                "7410dcf6546ba723"
             ]
         ]
     },
@@ -1166,7 +1139,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1800,
-        "y": 600,
+        "y": 620,
         "wires": []
     },
     {
@@ -1349,7 +1322,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Générateur Météo",
-        "func": "// On génère des valeurs qui changent à chaque exécution !\n\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 15 + 15) * 10) / 10, // Varie entre 15.0 et 30.0 °C\n        hum: Math.round(Math.random() * 40 + 30)               // Varie entre 30 et 70 %\n    },\n    sol_moyenne: {\n        temp: Math.round((Math.random() * 10 + 12) * 10) / 10, // Varie entre 12.0 et 22.0 °C\n        hum: Math.round(Math.random() * 60 + 20)               // Varie entre 20 et 80 %\n    },\n    lumiere: Math.round(Math.random() * 900 + 100),            // Varie entre 100 et 1000 Lux\n    erreurs: false\n};\n\nreturn msg;",
+        "func": "// On génère des valeurs qui changent à chaque exécution !\n\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 15 + 15) * 10) / 10, // Varie entre 15.0 et 30.0 °C\n        hum: Math.round(Math.random() * 40 + 30)               // Varie entre 30 et 70 %\n    },\n    sol_moyenne: {\n        temp: Math.round((Math.random() * 10 + 12) * 10) / 10, // Varie entre 12.0 et 22.0 °C\n        hum: Math.round(Math.random() * 60 + 20)               // Varie entre 20 et 80 %\n    },\n    lumiere: Math.round(Math.random() * 900 + 100),            // Varie entre 100 et 1000 Lux\n    erreurs: false\n};\n\nflow.set(\"meteo_actuelle\", msg.payload);\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1433,7 +1406,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "BDD Serre",
-        "x": 810,
+        "x": 1050,
         "y": 860,
         "wires": [
             []
@@ -1450,7 +1423,7 @@
         "syntax": "mustache",
         "template": "CREATE TABLE IF NOT EXISTS logs (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL\n);",
         "output": "str",
-        "x": 620,
+        "x": 860,
         "y": 860,
         "wires": [
             [
@@ -1701,11 +1674,31 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 390,
-        "y": 900,
+        "x": 630,
+        "y": 880,
         "wires": [
             [
                 "43783ccf213eb86a"
+            ]
+        ]
+    },
+    {
+        "id": "7410dcf6546ba723",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "Créer JSON Complet",
+        "func": "// On récupère toutes les informations depuis la mémoire (flow)\nvar mode = flow.get(\"mode_actuel\") || \"Inconnu\"; var seuilHum = flow.get(\"seuil_hum_sol\") || 30; var seuilLux = flow.get(\"seuil_lux_max\") || 800; var meteo = flow.get(\"meteo_actuelle\") || \"En attente des capteurs...\";\n// On construit la réponse finale de l'API\nmsg.payload = { \"etat_systeme\": \"En ligne\", \"mode_controle\": mode, \"parametres_auto\": { \"seuil_humidite_sol_min\": seuilHum, \"seuil_lumiere_max\": seuilLux }, \"dernieres_donnees_capteurs\": meteo }; return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "9c6905d77fd19bce"
             ]
         ]
     }
