@@ -1621,7 +1621,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traduire pour Graphique",
-        "func": "// Ce script transforme les lignes SQL en points pour le graphique\nvar historique_complet = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n    \n    // On transforme la date SQL en vrai temps pour le graphique\n    var temps = new Date(ligne.date + \"Z\").getTime(); \n    \n    // On crée un point pour la température\n    historique_complet.push({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n    \n    // On crée un point pour l'humidité\n    historique_complet.push({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\n// On envoie le paquet final au graphique\nmsg.payload = historique_complet;\nreturn msg;",
+        "func": "// Ce script transforme les lignes SQL en points pour le graphique\nvar historique_complet = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // On transforme la date SQL en vrai temps pour le graphique\n    var temps = new Date(ligne.date + \"Z\").getTime();\n\n    // On crée un point pour la température\n    historique_complet.push({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n\n    // On crée un point pour l'humidité\n    historique_complet.push({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\n// On envoie le paquet final au graphique\nmsg.payload = historique_complet;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
