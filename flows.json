@@ -2046,5 +2046,48 @@
         "x": 350,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "32b1cd2573f62313",
+        "type": "function",
+        "z": "802ece0f3d2ca554",
+        "name": "Météo Tomates",
+        "func": "// Les tomates aiment la chaleur (20 à 35°C)\nmsg.payload = {\n    air: { \n        temp: Math.round((Math.random() * 15 + 20) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 40) // 40 à 70%\n    },\n    sol_moyenne: { \n        hum: Math.round(Math.random() * 40 + 30) // 30 à 70%\n    },\n    lumiere: Math.round(Math.random() * 800 + 400), // Plus de soleil\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Tomates\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux TOMATES\nflow.set(\"tomate_meteo\", msg.payload);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a0bc8604f4d02600",
+        "type": "inject",
+        "z": "802ece0f3d2ca554",
+        "name": "Déclencheur (5 min)",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{     \"air\": { \"temp\": 26.5, \"hum\": 40 },     \"sol_moyenne\": { \"temp\": 22.0, \"hum\": 35 },     \"lumiere\": 450,     \"erreurs\": false }",
+        "payloadType": "json",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "32b1cd2573f62313"
+            ]
+        ]
     }
 ]
