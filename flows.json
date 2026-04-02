@@ -97,6 +97,12 @@
         "groupType": "default"
     },
     {
+        "id": "39adb336fda72678",
+        "type": "sqlitedb",
+        "db": "/home/pi/ma_serre.db",
+        "mode": "RWC"
+    },
+    {
         "id": "9b27f9ad1251814e",
         "type": "ui_base",
         "theme": {
@@ -203,6 +209,15 @@
         "hidden": false
     },
     {
+        "id": "8e1386a76a28abc7",
+        "type": "ui_tab",
+        "name": "Historique",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "266b2166fa4f4bac",
         "type": "ui_group",
         "name": "Température",
@@ -243,21 +258,6 @@
         "order": 4,
         "disp": true,
         "width": 6
-    },
-    {
-        "id": "39adb336fda72678",
-        "type": "sqlitedb",
-        "db": "/home/pi/ma_serre.db",
-        "mode": "RWC"
-    },
-    {
-        "id": "8e1386a76a28abc7",
-        "type": "ui_tab",
-        "name": "Historique",
-        "icon": "dashboard",
-        "order": 2,
-        "disabled": false,
-        "hidden": false
     },
     {
         "id": "e00403959bfd9664",
@@ -545,8 +545,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1080,
-        "y": 220,
+        "x": 1300,
+        "y": 280,
         "wires": []
     },
     {
@@ -819,134 +819,6 @@
         ]
     },
     {
-        "id": "874ecdb128d370e2",
-        "type": "ui_gauge",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "group": "266b2166fa4f4bac",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "thermomètre",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "50",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 810,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "87388404f8b8a7b5",
-        "type": "ui_chart",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "group": "266b2166fa4f4bac",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "label": "tomates température",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 720,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "14c0209580e95f8b",
-        "type": "ui_button",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Allumer Pompe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{\"pompe_eau\": true}",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 100,
-        "y": 480,
-        "wires": [
-            [
-                "7250843023e8c1fe"
-            ]
-        ]
-    },
-    {
-        "id": "5cc61b218a43aedf",
-        "type": "ui_button",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Eteindre Pompe",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{\"pompe_eau\": false}",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 100,
-        "y": 520,
-        "wires": [
-            [
-                "7250843023e8c1fe"
-            ]
-        ]
-    },
-    {
         "id": "7d6d3a4a7fcbfeff",
         "type": "switch",
         "z": "0b147d39fb575ebc",
@@ -1170,60 +1042,6 @@
         "wires": []
     },
     {
-        "id": "81b1db97f4137d3b",
-        "type": "ui_slider",
-        "z": "0b147d39fb575ebc",
-        "name": "Réglage Seuil Hum",
-        "label": "Seuil Humidité Sol (%)",
-        "tooltip": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 990,
-        "y": 700,
-        "wires": [
-            [
-                "e20d878fb0343885"
-            ]
-        ]
-    },
-    {
-        "id": "6f57963c4245e240",
-        "type": "ui_slider",
-        "z": "0b147d39fb575ebc",
-        "name": "Réglage Seuil Lux",
-        "label": "Seuil Lumière (Lux)",
-        "tooltip": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "1000",
-        "step": "10",
-        "className": "",
-        "x": 970,
-        "y": 780,
-        "wires": [
-            [
-                "692b6961433d97f7"
-            ]
-        ]
-    },
-    {
         "id": "e20d878fb0343885",
         "type": "change",
         "z": "0b147d39fb575ebc",
@@ -1367,40 +1185,6 @@
         ]
     },
     {
-        "id": "74345062b256d17c",
-        "type": "ui_switch",
-        "z": "0b147d39fb575ebc",
-        "name": "Interrupteur Auto/Manuel",
-        "label": "Mode du Système",
-        "tooltip": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "auto",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "manual",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 230,
-        "y": 700,
-        "wires": [
-            [
-                "7c076a4584890722"
-            ]
-        ]
-    },
-    {
         "id": "7c076a4584890722",
         "type": "change",
         "z": "0b147d39fb575ebc",
@@ -1421,20 +1205,6 @@
         "reg": false,
         "x": 130,
         "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3ec7d0fa11035c6b",
-        "type": "sqlite",
-        "z": "0b147d39fb575ebc",
-        "mydb": "39adb336fda72678",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "BDD Serre",
-        "x": 1050,
-        "y": 860,
         "wires": [
             []
         ]
@@ -1475,20 +1245,6 @@
             [
                 "1414de4786710274"
             ]
-        ]
-    },
-    {
-        "id": "1414de4786710274",
-        "type": "sqlite",
-        "z": "0b147d39fb575ebc",
-        "mydb": "39adb336fda72678",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 120,
-        "y": 440,
-        "wires": [
-            []
         ]
     },
     {
@@ -1540,6 +1296,73 @@
         ]
     },
     {
+        "id": "1c2b944491ea1ecd",
+        "type": "template",
+        "z": "0b147d39fb575ebc",
+        "name": "Demander Historique",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "sql",
+        "syntax": "mustache",
+        "template": "SELECT date, temp_air, hum_sol FROM logs ORDER BY id ASC;",
+        "output": "str",
+        "x": 920,
+        "y": 940,
+        "wires": [
+            [
+                "33e13f3b3f8631ba"
+            ]
+        ]
+    },
+    {
+        "id": "43d597a46a924e7d",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "Traduire pour Graphique",
+        "func": "// Ce script transforme les lignes SQL en points pour le graphique\nvar historique_complet = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n    \n    // On transforme la date SQL en vrai temps pour le graphique\n    var temps = new Date(ligne.date + \"Z\").getTime(); \n    \n    // On crée un point pour la température\n    historique_complet.push({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n    \n    // On crée un point pour l'humidité\n    historique_complet.push({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\n// On envoie le paquet final au graphique\nmsg.payload = historique_complet;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 1020,
+        "wires": [
+            [
+                "1454d4b5bd711b02"
+            ]
+        ]
+    },
+    {
+        "id": "3ec7d0fa11035c6b",
+        "type": "sqlite",
+        "z": "0b147d39fb575ebc",
+        "mydb": "39adb336fda72678",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "BDD Serre",
+        "x": 1050,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1414de4786710274",
+        "type": "sqlite",
+        "z": "0b147d39fb575ebc",
+        "mydb": "39adb336fda72678",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "3037fb84d993a050",
         "type": "sqlite",
         "z": "0b147d39fb575ebc",
@@ -1551,6 +1374,78 @@
         "y": 980,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "33e13f3b3f8631ba",
+        "type": "sqlite",
+        "z": "0b147d39fb575ebc",
+        "mydb": "39adb336fda72678",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1240,
+        "y": 940,
+        "wires": [
+            [
+                "43d597a46a924e7d"
+            ]
+        ]
+    },
+    {
+        "id": "14c0209580e95f8b",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Allumer Pompe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"pompe_eau\": true}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "7250843023e8c1fe"
+            ]
+        ]
+    },
+    {
+        "id": "5cc61b218a43aedf",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Eteindre Pompe",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"pompe_eau\": false}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "7250843023e8c1fe"
+            ]
         ]
     },
     {
@@ -1582,58 +1477,163 @@
         ]
     },
     {
-        "id": "1c2b944491ea1ecd",
-        "type": "template",
+        "id": "74345062b256d17c",
+        "type": "ui_switch",
         "z": "0b147d39fb575ebc",
-        "name": "Demander Historique",
-        "field": "topic",
-        "fieldType": "msg",
-        "format": "sql",
-        "syntax": "mustache",
-        "template": "SELECT date, temp_air, hum_sol FROM logs ORDER BY id ASC;",
-        "output": "str",
-        "x": 920,
-        "y": 940,
+        "name": "Interrupteur Auto/Manuel",
+        "label": "Mode du Système",
+        "tooltip": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "auto",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "manual",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 230,
+        "y": 700,
         "wires": [
             [
-                "33e13f3b3f8631ba"
+                "7c076a4584890722"
             ]
         ]
     },
     {
-        "id": "33e13f3b3f8631ba",
-        "type": "sqlite",
+        "id": "81b1db97f4137d3b",
+        "type": "ui_slider",
         "z": "0b147d39fb575ebc",
-        "mydb": "39adb336fda72678",
-        "sqlquery": "msg.topic",
-        "sql": "",
+        "name": "Réglage Seuil Hum",
+        "label": "Seuil Humidité Sol (%)",
+        "tooltip": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 990,
+        "y": 700,
+        "wires": [
+            [
+                "e20d878fb0343885"
+            ]
+        ]
+    },
+    {
+        "id": "6f57963c4245e240",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Lux",
+        "label": "Seuil Lumière (Lux)",
+        "tooltip": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1000",
+        "step": "10",
+        "className": "",
+        "x": 970,
+        "y": 780,
+        "wires": [
+            [
+                "692b6961433d97f7"
+            ]
+        ]
+    },
+    {
+        "id": "874ecdb128d370e2",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
         "name": "",
-        "x": 1240,
-        "y": 940,
-        "wires": [
-            [
-                "43d597a46a924e7d"
-            ]
-        ]
+        "group": "266b2166fa4f4bac",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "thermomètre",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 440,
+        "wires": []
     },
     {
-        "id": "43d597a46a924e7d",
-        "type": "function",
+        "id": "87388404f8b8a7b5",
+        "type": "ui_chart",
         "z": "0b147d39fb575ebc",
-        "name": "Traduire pour Graphique",
-        "func": "// Ce script transforme les lignes SQL en points pour le graphique\nvar historique_complet = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n    \n    // On transforme la date SQL en vrai temps pour le graphique\n    var temps = new Date(ligne.date + \"Z\").getTime(); \n    \n    // On crée un point pour la température\n    historique_complet.push({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n    \n    // On crée un point pour l'humidité\n    historique_complet.push({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\n// On envoie le paquet final au graphique\nmsg.payload = historique_complet;\nreturn msg;",
+        "name": "",
+        "group": "266b2166fa4f4bac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "tomates température",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
         "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1190,
-        "y": 1020,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 720,
+        "y": 420,
         "wires": [
-            [
-                "1454d4b5bd711b02"
-            ]
+            []
         ]
     },
     {
