@@ -247,7 +247,7 @@
     {
         "id": "39adb336fda72678",
         "type": "sqlitedb",
-        "db": "/home/pi/ma_serre.db",
+        "db": "ma_serre.db",
         "mode": "RWC"
     },
     {
@@ -430,9 +430,9 @@
                 "p": "payload"
             }
         ],
-        "repeat": "10",
+        "repeat": "2",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "{     \"air\": { \"temp\": 26.5, \"hum\": 40 },     \"sol_moyenne\": { \"temp\": 22.0, \"hum\": 35 },     \"lumiere\": 450,     \"erreurs\": false }",
@@ -1444,7 +1444,7 @@
         "type": "template",
         "z": "0b147d39fb575ebc",
         "name": "Créer table SQL",
-        "field": "payload",
+        "field": "topic",
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
@@ -1485,7 +1485,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 400,
+        "x": 370,
         "y": 420,
         "wires": [
             []
@@ -1547,7 +1547,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 580,
+        "x": 550,
         "y": 940,
         "wires": [
             []
@@ -1607,7 +1607,7 @@
         "mydb": "39adb336fda72678",
         "sqlquery": "msg.topic",
         "sql": "",
-        "name": "",
+        "name": "Table Historique 7JRS",
         "x": 660,
         "y": 1020,
         "wires": [
@@ -1621,7 +1621,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traduire pour Graphique",
-        "func": "// Ce script transforme les lignes SQL en points pour le graphique\nvar historique_complet = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n    \n    // On transforme la date SQL en vrai temps pour le graphique\n    var temps = new Date(ligne.date + \"Z\").getTime(); \n    \n    // On crée un point pour la température\n    historique_complet.push({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n    \n    // On crée un point pour l'humidité\n    historique_complet.push({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\n// On envoie le paquet final au graphique\nmsg.payload = historique_complet;\nreturn msg;",
+        "func": "// Sécurité : si la base est vide, on arrête tout\nif (!msg.payload || msg.payload.length === 0) {\n    return null;\n}\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // LA CORRECTION EST ICI : On remplace l'espace par un \"T\"\n    var dateCorrige = ligne.date.replace(\" \", \"T\") + \"Z\";\n    var temps = new Date(dateCorrige).getTime();\n\n    // On envoie le point de température\n    node.send({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n\n    // On envoie le point d'humidité\n    node.send({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\nreturn null;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1678,6 +1678,35 @@
         "y": 1020,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "92c523be397e8236",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 740,
+        "wires": [
+            [
+                "43783ccf213eb86a"
+            ]
         ]
     }
 ]
