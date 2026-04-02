@@ -767,7 +767,7 @@
         "id": "ca5a29b66d24410a",
         "type": "change",
         "z": "0b147d39fb575ebc",
-        "name": "Isoler le Chiffre",
+        "name": "Isoler Valeur Air Temp",
         "rules": [
             {
                 "t": "set",
@@ -783,7 +783,7 @@
         "to": "",
         "reg": false,
         "x": 720,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "874ecdb128d370e2",
@@ -815,8 +815,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 910,
-        "y": 300,
+        "x": 930,
+        "y": 280,
         "wires": []
     },
     {
@@ -828,7 +828,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "label": "tomates température",
+        "label": "Air Temp",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -857,8 +857,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 940,
-        "y": 260,
+        "x": 920,
+        "y": 240,
         "wires": [
             []
         ]
