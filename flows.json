@@ -527,8 +527,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1000,
-        "y": 440,
+        "x": 1420,
+        "y": 800,
         "wires": [
             [
                 "b7642faeee927d56",
@@ -559,8 +559,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1250,
-        "y": 440,
+        "x": 1730,
+        "y": 760,
         "wires": [
             [
                 "848057ea99541ac0"
@@ -589,30 +589,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1500,
-        "y": 420,
+        "x": 1980,
+        "y": 740,
         "wires": [
-            [
-                "fb43b14d88fbad55"
-            ]
+            []
         ]
-    },
-    {
-        "id": "fb43b14d88fbad55",
-        "type": "debug",
-        "z": "0b147d39fb575ebc",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1800,
-        "y": 380,
-        "wires": []
     },
     {
         "id": "9b6fe1f967285350",
@@ -780,12 +761,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1500,
-        "y": 460,
+        "x": 1980,
+        "y": 780,
         "wires": [
-            [
-                "fb43b14d88fbad55"
-            ]
+            []
         ]
     },
     {
@@ -847,8 +826,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 220,
+        "x": 1420,
+        "y": 40,
         "wires": [
             [
                 "874ecdb128d370e2",
@@ -861,8 +840,8 @@
         "type": "ui_gauge",
         "z": "0b147d39fb575ebc",
         "name": "",
-        "group": "266b2166fa4f4bac",
-        "order": 0,
+        "group": "ec5ebbbb459a3ba3",
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -880,8 +859,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1400,
-        "y": 220,
+        "x": 1680,
+        "y": 60,
         "wires": []
     },
     {
@@ -889,7 +868,7 @@
         "type": "ui_chart",
         "z": "0b147d39fb575ebc",
         "name": "",
-        "group": "266b2166fa4f4bac",
+        "group": "ec5ebbbb459a3ba3",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -922,8 +901,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1420,
-        "y": 180,
+        "x": 1700,
+        "y": 20,
         "wires": [
             []
         ]
@@ -1006,15 +985,13 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1020,
-        "y": 380,
+        "x": 1380,
+        "y": 740,
         "wires": [
             [
                 "36645593e2c06d24"
             ],
-            [
-                "fb43b14d88fbad55"
-            ]
+            []
         ]
     },
     {
@@ -1039,8 +1016,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1230,
-        "y": 560,
+        "x": 1750,
+        "y": 840,
         "wires": [
             [
                 "fe0c74116bf55dbd"
@@ -1069,12 +1046,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
-        "y": 540,
+        "x": 1950,
+        "y": 820,
         "wires": [
-            [
-                "83f2429fc9e2a6d5"
-            ]
+            []
         ]
     },
     {
@@ -1096,12 +1071,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
-        "y": 580,
+        "x": 1950,
+        "y": 860,
         "wires": [
-            [
-                "83f2429fc9e2a6d5"
-            ]
+            []
         ]
     },
     {
@@ -1126,8 +1099,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1230,
-        "y": 680,
+        "x": 1770,
+        "y": 920,
         "wires": [
             [
                 "522ca4fd07b2a87f"
@@ -1156,12 +1129,10 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 660,
+        "x": 1940,
+        "y": 900,
         "wires": [
-            [
-                "83f2429fc9e2a6d5"
-            ]
+            []
         ]
     },
     {
@@ -1183,29 +1154,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1450,
-        "y": 700,
+        "x": 1930,
+        "y": 940,
         "wires": [
-            [
-                "83f2429fc9e2a6d5"
-            ]
+            []
         ]
-    },
-    {
-        "id": "83f2429fc9e2a6d5",
-        "type": "debug",
-        "z": "0b147d39fb575ebc",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1800,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "442bb146d4b47b6d",
@@ -1381,8 +1334,8 @@
         "syntax": "mustache",
         "template": "INSERT INTO logs (temp_air, hum_sol, lumiere) \nVALUES ({{payload.air.temp}}, {{payload.sol_moyenne.hum}}, {{payload.lumiere}});",
         "output": "str",
-        "x": 1090,
-        "y": 340,
+        "x": 970,
+        "y": 480,
         "wires": [
             [
                 "1414de4786710274"
@@ -1397,8 +1350,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 1310,
-        "y": 340,
+        "x": 1110,
+        "y": 540,
         "wires": [
             []
         ]
@@ -1586,8 +1539,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1200,
-        "y": 880,
+        "x": 1000,
+        "y": 940,
         "wires": [
             []
         ]
@@ -1626,7 +1579,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Créer JSON Complet",
-        "func": "// On récupère toutes les informations depuis la mémoire (flow)\nvar mode = flow.get(\"mode_actuel\") || \"Inconnu\";\nvar seuilHum = flow.get(\"seuil_hum_sol\") || 30;\nvar seuilLux = flow.get(\"seuil_lux_max\") || 800;\nvar meteo = flow.get(\"meteo_actuelle\") || \"En attente des capteurs...\";\n\n// On construit la réponse finale de l'API\nmsg.payload = {\n    \"etat_systeme\": \"En ligne\",\n    \"mode_controle\": mode,\n    \"parametres_auto\": {\n        \"seuil_humidite_sol_min\": seuilHum,\n        \"seuil_lumiere_max\": seuilLux\n    },\n    \"dernieres_donnees_capteurs\": meteo\n};\n\nreturn msg;",
+        "func": "// 1. Récupération du profil des FRAISES\nvar fraises = {\n    meteo: flow.get(\"fraise_meteo\") || \"En attente des capteurs...\",\n    seuils: {\n        humidite_sol_min: flow.get(\"fraise_seuil_hum\") || 40,\n        lumiere_max: flow.get(\"fraise_seuil_lux\") || 800\n    },\n    alerte_actuelle: flow.get(\"fraise_alerte\") || \"Tout va bien\"\n};\n\n// 2. Récupération du profil des TOMATES\nvar tomates = {\n    meteo: flow.get(\"tomate_meteo\") || \"En attente des capteurs...\",\n    seuils: {\n        humidite_sol_min: flow.get(\"tomate_seuil_hum\") || 30,\n        lumiere_max: flow.get(\"tomate_seuil_lux\") || 800\n    },\n    alerte_actuelle: flow.get(\"tomate_alerte\") || \"Tout va bien\"\n};\n\n// 3. Construction du JSON final (Le rapport complet)\nmsg.payload = {\n    systeme: {\n        statut: \"En ligne\",\n        rythme_actualisation_minutes: flow.get(\"frequence_minutes\") || 5\n    },\n    cultures: {\n        zone_1_fraises: fraises,\n        zone_2_tomates: tomates\n    }\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1646,8 +1599,8 @@
         "type": "ui_gauge",
         "z": "0b147d39fb575ebc",
         "name": "",
-        "group": "266b2166fa4f4bac",
-        "order": 0,
+        "group": "ec5ebbbb459a3ba3",
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1665,21 +1618,21 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1400,
-        "y": 300,
+        "x": 1680,
+        "y": 140,
         "wires": []
     },
     {
         "id": "f5fc3057f1588faf",
         "type": "change",
         "z": "0b147d39fb575ebc",
-        "name": "Isoler Valeur Air Sol",
+        "name": "Isoler Valeur Sol Temp",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload.air.temp",
+                "to": "payload.sol.temp",
                 "tot": "msg"
             }
         ],
@@ -1688,8 +1641,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1150,
-        "y": 280,
+        "x": 1420,
+        "y": 120,
         "wires": [
             [
                 "ad33633d3eb98b68",
@@ -1702,8 +1655,8 @@
         "type": "ui_chart",
         "z": "0b147d39fb575ebc",
         "name": "",
-        "group": "266b2166fa4f4bac",
-        "order": 1,
+        "group": "ec5ebbbb459a3ba3",
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "Graph Température Sol (°C)",
@@ -1735,8 +1688,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1420,
-        "y": 260,
+        "x": 1700,
+        "y": 100,
         "wires": [
             []
         ]
@@ -1746,22 +1699,20 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Météo Fraises",
-        "func": "// Les fraises préfèrent la douceur (15 à 25°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 50) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 40 + 40) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 600 + 200),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Fraises\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux FRAISES\nflow.set(\"fraise_meteo\", msg.payload);\n\nreturn msg;",
+        "func": "// Les fraises préfèrent la douceur (15 à 25°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 50) // 50 à 80%\n    },\n    sol: {\n        temp: Math.round((Math.random() * 20 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 40 + 50) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 40 + 40) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 600 + 200),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Fraises\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux FRAISES\nflow.set(\"fraise_meteo\", msg.payload);\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 240,
+        "x": 740,
+        "y": 360,
         "wires": [
             [
                 "6d86629c28491505",
-                "ca5a29b66d24410a",
-                "f5fc3057f1588faf",
                 "132df9aec04d5a09",
-                "7d6d3a4a7fcbfeff"
+                "565bb8cb5d234022"
             ]
         ]
     },
@@ -1777,15 +1728,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 300,
+        "x": 740,
+        "y": 400,
         "wires": [
             [
                 "7e13cffeedad751f",
-                "ca5a29b66d24410a",
-                "f5fc3057f1588faf",
                 "132df9aec04d5a09",
-                "7d6d3a4a7fcbfeff"
+                "565bb8cb5d234022"
             ]
         ]
     },
@@ -1801,8 +1750,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 260,
+        "x": 1000,
+        "y": 360,
         "wires": [
             []
         ]
@@ -1822,8 +1771,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 600,
-        "y": 360,
+        "x": 680,
+        "y": 240,
         "wires": [
             []
         ]
@@ -1849,12 +1798,14 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
-        "y": 340,
+        "x": 210,
+        "y": 300,
         "wires": [
             [
                 "3e1c578c5ad0709b",
-                "f5ef07a4b1b6ed01"
+                "f5ef07a4b1b6ed01",
+                "d8e7a3fe412210e7",
+                "b51468065223d112"
             ]
         ]
     },
@@ -1870,8 +1821,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 360,
+        "x": 410,
+        "y": 240,
         "wires": [
             [
                 "517665d5a384d45c"
@@ -1897,8 +1848,8 @@
         "max": "60",
         "step": 1,
         "className": "",
-        "x": 350,
-        "y": 460,
+        "x": 110,
+        "y": 440,
         "wires": [
             [
                 "900ad810ca8cbeb6"
@@ -1924,8 +1875,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
-        "y": 460,
+        "x": 380,
+        "y": 440,
         "wires": [
             []
         ]
@@ -1942,8 +1893,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 400,
+        "x": 710,
+        "y": 300,
         "wires": [
             []
         ]
@@ -1953,15 +1904,1208 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Analyse & Action tomate",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"tomate_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"tomate_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Tomate trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Tomate (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"tomate_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
+        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"tomate_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"tomate_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Tomates trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Tomates (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"tomate_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 320,
+        "x": 1010,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "565bb8cb5d234022",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Trieur de Cutlures",
+        "property": "culture",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Fraises",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Tomates",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 140,
+        "wires": [
+            [
+                "ca5a29b66d24410a",
+                "f5fc3057f1588faf",
+                "7d6d3a4a7fcbfeff",
+                "ff5e432f1c1dfd9d",
+                "996a57aff9bddd0d"
+            ],
+            [
+                "4c034313852fcbc2",
+                "bd81fa05384048f0",
+                "c629b0edd2a34439",
+                "2c1c9c77fe7aa4fb",
+                "5644af03a0c358cb"
+            ]
+        ]
+    },
+    {
+        "id": "1a297d79fee6563a",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Aire (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c034313852fcbc2",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Air Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.air.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 200,
+        "wires": [
+            [
+                "a1798bbf2a5fc7ce",
+                "1a297d79fee6563a"
+            ]
+        ]
+    },
+    {
+        "id": "a1798bbf2a5fc7ce",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Aire (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4c4fcc244838d219",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Sol (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bd81fa05384048f0",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Sol Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sol.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1440,
+        "y": 280,
+        "wires": [
+            [
+                "4c4fcc244838d219",
+                "a221458d8705a4c0"
+            ]
+        ]
+    },
+    {
+        "id": "a221458d8705a4c0",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Sol (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21982925d6ce0ae8",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre : Allumer Ventilateur",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ventilateur",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fdad93aa8e642f3c",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Est-on en mode Auto ?",
+        "property": "mode_actuel",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "auto",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1440,
+        "y": 1080,
+        "wires": [
+            [
+                "58809cced2fe3249",
+                "7520abb6d622afd1",
+                "b76da4edf092f3d4"
+            ]
+        ]
+    },
+    {
+        "id": "58809cced2fe3249",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Température >/<= Seuil ?",
+        "property": "payload.temp_air",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "seuil_temp_max",
+                "vt": "flow"
+            },
+            {
+                "t": "lte",
+                "v": "seuil_temp_max",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1730,
+        "y": 1040,
+        "wires": [
+            [
+                "21982925d6ce0ae8"
+            ],
+            [
+                "e844ede0a8293cd5"
+            ]
+        ]
+    },
+    {
+        "id": "e844ede0a8293cd5",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ordre : Éteindre Ventilateur",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ventilateur",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c629b0edd2a34439",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Capteurs OK ?",
+        "property": "payload.erreurs",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1380,
+        "y": 1020,
+        "wires": [
+            [
+                "fdad93aa8e642f3c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "01599319efbbce6a",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Allumer Arrosage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.arrosage",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1950,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "289e20d129c8c987",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Éteindre Arrosage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.arrosage",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1950,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7520abb6d622afd1",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Humidité Sol <= ?",
+        "property": "payload.sol_moyenne.hum",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "seuil_hum_sol",
+                "vt": "flow"
+            },
+            {
+                "t": "gt",
+                "v": "seuil_hum_sol",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1750,
+        "y": 1120,
+        "wires": [
+            [
+                "01599319efbbce6a"
+            ],
+            [
+                "289e20d129c8c987"
+            ]
+        ]
+    },
+    {
+        "id": "b76da4edf092f3d4",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "Lumière >= ?",
+        "property": "payload.lumiere",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "seuil_lux_max",
+                "vt": "flow"
+            },
+            {
+                "t": "lt",
+                "v": "seuil_lux_max",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1770,
+        "y": 1200,
+        "wires": [
+            [
+                "04fc85893fabf411"
+            ],
+            [
+                "a9e62655e0411d83"
+            ]
+        ]
+    },
+    {
+        "id": "04fc85893fabf411",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Fermer Volets",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.volets",
+                "pt": "msg",
+                "to": "descendre",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9e62655e0411d83",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ouvrir Volets",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.volets",
+                "pt": "msg",
+                "to": "monter",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81b1db97f4137d3b",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Hum",
+        "label": "Seuil Humidité Sol (%)",
+        "tooltip": "",
+        "group": "e089eca856728ad6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 810,
+        "y": 1180,
+        "wires": [
+            [
+                "e20d878fb0343885"
+            ]
+        ]
+    },
+    {
+        "id": "6f57963c4245e240",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Lux",
+        "label": "Seuil Lumière (Lux)",
+        "tooltip": "",
+        "group": "e089eca856728ad6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1000",
+        "step": "10",
+        "className": "",
+        "x": 810,
+        "y": 1220,
+        "wires": [
+            [
+                "692b6961433d97f7"
+            ]
+        ]
+    },
+    {
+        "id": "e20d878fb0343885",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fraise_seuil_hum",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "692b6961433d97f7",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Lux",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fraise_seuil_hum",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58bb8358e6cc5c1a",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Hum",
+        "label": "Seuil Humidité Sol (%)",
+        "tooltip": "",
+        "group": "fb623479fca66072",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 810,
+        "y": 1440,
+        "wires": [
+            [
+                "94fd38b13ea91544"
+            ]
+        ]
+    },
+    {
+        "id": "43f6c2545eed6228",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Lux",
+        "label": "Seuil Lumière (Lux)",
+        "tooltip": "",
+        "group": "fb623479fca66072",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1000",
+        "step": "10",
+        "className": "",
+        "x": 810,
+        "y": 1480,
+        "wires": [
+            [
+                "14fbf3b30a6abc43"
+            ]
+        ]
+    },
+    {
+        "id": "94fd38b13ea91544",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tomate_seuil_hum",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14fbf3b30a6abc43",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Lux",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tomate_seuil_lux",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 1480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f6e39abe38dfd58",
+        "type": "comment",
+        "z": "0b147d39fb575ebc",
+        "name": "Partie Tomates",
+        "info": "",
+        "x": 580,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "b700031104114c2e",
+        "type": "comment",
+        "z": "0b147d39fb575ebc",
+        "name": "Partie Fraises",
+        "info": "",
+        "x": 570,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "408c9c86ce02269e",
+        "type": "debug",
+        "z": "0b147d39fb575ebc",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "ff5e432f1c1dfd9d",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Air Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.air.hum",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 360,
+        "wires": [
+            [
+                "dfd4e5b2a7a9620d",
+                "cc954078ca02766f"
+            ]
+        ]
+    },
+    {
+        "id": "dfd4e5b2a7a9620d",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "ec5ebbbb459a3ba3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Aire (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "cc954078ca02766f",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "ec5ebbbb459a3ba3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Aire (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "937e9155d3de3ebb",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "ec5ebbbb459a3ba3",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Sol (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "996a57aff9bddd0d",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Sol Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sol.hum",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 440,
+        "wires": [
+            [
+                "937e9155d3de3ebb",
+                "d0b18382603fd993"
+            ]
+        ]
+    },
+    {
+        "id": "d0b18382603fd993",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "ec5ebbbb459a3ba3",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Sol (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cec35be2a217509",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Aire (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c1c9c77fe7aa4fb",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Air Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.air.hum",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 520,
+        "wires": [
+            [
+                "dd48c6fd618f8407",
+                "0cec35be2a217509"
+            ]
+        ]
+    },
+    {
+        "id": "dd48c6fd618f8407",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Aire (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "ee74f5ea943c6948",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Sol (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1680,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "5644af03a0c358cb",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Sol Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sol.hum",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1440,
+        "y": 600,
+        "wires": [
+            [
+                "ee74f5ea943c6948",
+                "31abed176e2b4286"
+            ]
+        ]
+    },
+    {
+        "id": "31abed176e2b4286",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "c80b32b32418c521",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Sol (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 580,
         "wires": [
             []
         ]
@@ -2184,233 +3328,5 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "81b1db97f4137d3b",
-        "type": "ui_slider",
-        "z": "9473ffe937882cd7",
-        "name": "Réglage Seuil Hum",
-        "label": "Seuil Humidité Sol (%)",
-        "tooltip": "",
-        "group": "e089eca856728ad6",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 590,
-        "y": 40,
-        "wires": [
-            [
-                "e20d878fb0343885"
-            ]
-        ]
-    },
-    {
-        "id": "6f57963c4245e240",
-        "type": "ui_slider",
-        "z": "9473ffe937882cd7",
-        "name": "Réglage Seuil Lux",
-        "label": "Seuil Lumière (Lux)",
-        "tooltip": "",
-        "group": "e089eca856728ad6",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "1000",
-        "step": "10",
-        "className": "",
-        "x": 590,
-        "y": 80,
-        "wires": [
-            [
-                "692b6961433d97f7"
-            ]
-        ]
-    },
-    {
-        "id": "e20d878fb0343885",
-        "type": "change",
-        "z": "9473ffe937882cd7",
-        "name": "Mémoriser Seuil Hum",
-        "rules": [
-            {
-                "t": "set",
-                "p": "fraise_seuil_hum",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 820,
-        "y": 40,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "692b6961433d97f7",
-        "type": "change",
-        "z": "9473ffe937882cd7",
-        "name": "Mémoriser Seuil Lux",
-        "rules": [
-            {
-                "t": "set",
-                "p": "fraise_seuil_hum",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 820,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "58bb8358e6cc5c1a",
-        "type": "ui_slider",
-        "z": "9473ffe937882cd7",
-        "name": "Réglage Seuil Hum",
-        "label": "Seuil Humidité Sol (%)",
-        "tooltip": "",
-        "group": "fb623479fca66072",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "className": "",
-        "x": 590,
-        "y": 300,
-        "wires": [
-            [
-                "94fd38b13ea91544"
-            ]
-        ]
-    },
-    {
-        "id": "43f6c2545eed6228",
-        "type": "ui_slider",
-        "z": "9473ffe937882cd7",
-        "name": "Réglage Seuil Lux",
-        "label": "Seuil Lumière (Lux)",
-        "tooltip": "",
-        "group": "fb623479fca66072",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": "1000",
-        "step": "10",
-        "className": "",
-        "x": 590,
-        "y": 340,
-        "wires": [
-            [
-                "14fbf3b30a6abc43"
-            ]
-        ]
-    },
-    {
-        "id": "94fd38b13ea91544",
-        "type": "change",
-        "z": "9473ffe937882cd7",
-        "name": "Mémoriser Seuil Hum",
-        "rules": [
-            {
-                "t": "set",
-                "p": "tomate_seuil_hum",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 820,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "14fbf3b30a6abc43",
-        "type": "change",
-        "z": "9473ffe937882cd7",
-        "name": "Mémoriser Seuil Lux",
-        "rules": [
-            {
-                "t": "set",
-                "p": "tomate_seuil_lux",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 820,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9f6e39abe38dfd58",
-        "type": "comment",
-        "z": "9473ffe937882cd7",
-        "name": "Partie Tomates",
-        "info": "",
-        "x": 360,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "b700031104114c2e",
-        "type": "comment",
-        "z": "9473ffe937882cd7",
-        "name": "Partie Fraises",
-        "info": "",
-        "x": 350,
-        "y": 40,
-        "wires": []
     }
 ]
