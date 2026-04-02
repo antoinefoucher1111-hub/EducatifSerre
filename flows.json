@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "802ece0f3d2ca554",
+        "type": "tab",
+        "label": "Flux 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "7c68e5354ffa8fcf",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -785,7 +793,7 @@
         "id": "ca5a29b66d24410a",
         "type": "change",
         "z": "0b147d39fb575ebc",
-        "name": "Isoler le Chiffre",
+        "name": "Isoler Valeur Air Temp",
         "rules": [
             {
                 "t": "set",
@@ -801,7 +809,7 @@
         "to": "",
         "reg": false,
         "x": 720,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "874ecdb128d370e2",
@@ -819,7 +827,7 @@
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "thermomètre",
+        "title": "Température Aire (°C)",
         "label": "units",
         "format": "{{value}}",
         "min": 0,
@@ -833,8 +841,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 910,
-        "y": 300,
+        "x": 960,
+        "y": 260,
         "wires": []
     },
     {
@@ -846,7 +854,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "label": "tomates température",
+        "label": "Graph Température Aire (°C)",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -875,8 +883,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 940,
-        "y": 260,
+        "x": 980,
+        "y": 220,
         "wires": [
             []
         ]
@@ -1718,6 +1726,124 @@
             [
                 "9c6905d77fd19bce"
             ]
+        ]
+    },
+    {
+        "id": "ad33633d3eb98b68",
+        "type": "ui_gauge",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "266b2166fa4f4bac",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Température Sol (°C)",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f5fc3057f1588faf",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Isoler Valeur Air Sol",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.air.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 320,
+        "wires": [
+            [
+                "ad33633d3eb98b68",
+                "1272c02d318137d4"
+            ]
+        ]
+    },
+    {
+        "id": "1272c02d318137d4",
+        "type": "ui_chart",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "266b2166fa4f4bac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Graph Température Sol (°C)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 980,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ae3bb251d539059",
+        "type": "function",
+        "z": "802ece0f3d2ca554",
+        "name": "Générateur Météo",
+        "func": "// On génère des valeurs qui changent à chaque exécution !\n\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 15 + 15) * 10) / 10, // Varie entre 15.0 et 30.0 °C\n        hum: Math.round(Math.random() * 40 + 30)               // Varie entre 30 et 70 %\n    },\n    sol_moyenne: {\n        temp: Math.round((Math.random() * 10 + 12) * 10) / 10, // Varie entre 12.0 et 22.0 °C\n        hum: Math.round(Math.random() * 60 + 20)               // Varie entre 20 et 80 %\n    },\n    lumiere: Math.round(Math.random() * 900 + 100),            // Varie entre 100 et 1000 Lux\n    erreurs: false\n};\n\nflow.set(\"meteo_actuelle\", msg.payload);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 140,
+        "wires": [
+            []
         ]
     }
 ]
