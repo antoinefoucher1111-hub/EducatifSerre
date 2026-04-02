@@ -462,8 +462,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 960,
-        "y": 360,
+        "x": 940,
+        "y": 460,
         "wires": [
             [
                 "b7642faeee927d56",
@@ -476,7 +476,7 @@
         "id": "b7642faeee927d56",
         "type": "switch",
         "z": "0b147d39fb575ebc",
-        "name": "Température > Seuil ?",
+        "name": "Température >/<= Seuil ?",
         "property": "payload.temp_air",
         "propertyType": "msg",
         "rules": [
@@ -494,7 +494,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1240,
+        "x": 1250,
         "y": 440,
         "wires": [
             [
@@ -1188,8 +1188,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 1590,
-        "y": 920,
+        "x": 1250,
+        "y": 860,
         "wires": [
             [
                 "e20d878fb0343885"
@@ -1215,8 +1215,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 1590,
-        "y": 960,
+        "x": 1250,
+        "y": 900,
         "wires": [
             [
                 "692b6961433d97f7"
@@ -1242,8 +1242,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1820,
-        "y": 920,
+        "x": 1480,
+        "y": 860,
         "wires": [
             []
         ]
@@ -1267,8 +1267,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1820,
-        "y": 960,
+        "x": 1480,
+        "y": 900,
         "wires": [
             []
         ]
@@ -1701,8 +1701,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 170,
-        "y": 740,
+        "x": 390,
+        "y": 900,
         "wires": [
             [
                 "43783ccf213eb86a"
