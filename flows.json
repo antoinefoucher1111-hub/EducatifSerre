@@ -433,7 +433,8 @@
         "wires": [
             [
                 "b7642faeee927d56",
-                "e576a61aea7beeba"
+                "e576a61aea7beeba",
+                "b4a9ccd9b41ffa75"
             ]
         ]
     },
@@ -948,25 +949,25 @@
         "id": "e576a61aea7beeba",
         "type": "switch",
         "z": "0b147d39fb575ebc",
-        "name": "Humidité Sol <= 30 ?",
+        "name": "Humidité Sol <= ?",
         "property": "payload.sol_moyenne.hum",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "lte",
-                "v": "30",
-                "vt": "str"
+                "v": "seuil_hum_sol",
+                "vt": "flow"
             },
             {
                 "t": "gt",
-                "v": "30",
-                "vt": "str"
+                "v": "seuil_hum_sol",
+                "vt": "flow"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 580,
+        "x": 570,
         "y": 580,
         "wires": [
             [
@@ -999,7 +1000,9 @@
         "x": 810,
         "y": 580,
         "wires": [
-            []
+            [
+                "83f2429fc9e2a6d5"
+            ]
         ]
     },
     {
@@ -1024,28 +1027,282 @@
         "x": 770,
         "y": 640,
         "wires": [
-            []
+            [
+                "83f2429fc9e2a6d5"
+            ]
         ]
     },
     {
         "id": "b4a9ccd9b41ffa75",
         "type": "switch",
         "z": "0b147d39fb575ebc",
-        "name": "",
-        "property": "payload",
+        "name": "Lumière >= ?",
+        "property": "payload.lumiere",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
+                "t": "gte",
+                "v": "seuil_lux_max",
+                "vt": "flow"
+            },
+            {
+                "t": "lt",
+                "v": "seuil_lux_max",
+                "vt": "flow"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 540,
-        "y": 660,
+        "outputs": 2,
+        "x": 510,
+        "y": 680,
+        "wires": [
+            [
+                "522ca4fd07b2a87f"
+            ],
+            [
+                "578c36b4f8e6b886"
+            ]
+        ]
+    },
+    {
+        "id": "522ca4fd07b2a87f",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Fermer Volets",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.volets",
+                "pt": "msg",
+                "to": "descendre",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 680,
+        "wires": [
+            [
+                "83f2429fc9e2a6d5"
+            ]
+        ]
+    },
+    {
+        "id": "578c36b4f8e6b886",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Ouvrir Volets",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.volets",
+                "pt": "msg",
+                "to": "monter",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 720,
+        "wires": [
+            [
+                "83f2429fc9e2a6d5"
+            ]
+        ]
+    },
+    {
+        "id": "83f2429fc9e2a6d5",
+        "type": "debug",
+        "z": "0b147d39fb575ebc",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "81b1db97f4137d3b",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Hum",
+        "label": "Seuil Humidité Sol (%)",
+        "tooltip": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 990,
+        "y": 700,
+        "wires": [
+            [
+                "e20d878fb0343885"
+            ]
+        ]
+    },
+    {
+        "id": "6f57963c4245e240",
+        "type": "ui_slider",
+        "z": "0b147d39fb575ebc",
+        "name": "Réglage Seuil Lux",
+        "label": "Seuil Lumière (Lux)",
+        "tooltip": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "1000",
+        "step": "10",
+        "className": "",
+        "x": 970,
+        "y": 780,
+        "wires": [
+            [
+                "692b6961433d97f7"
+            ]
+        ]
+    },
+    {
+        "id": "e20d878fb0343885",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "seuil_hum_sol",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "692b6961433d97f7",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Mémoriser Seuil Lux",
+        "rules": [
+            {
+                "t": "set",
+                "p": "seuil_lux_max",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "442bb146d4b47b6d",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "Démarrage Système",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 460,
+        "y": 800,
+        "wires": [
+            [
+                "7ccce05a819c694e"
+            ]
+        ]
+    },
+    {
+        "id": "7ccce05a819c694e",
+        "type": "change",
+        "z": "0b147d39fb575ebc",
+        "name": "Valeurs par Défaut",
+        "rules": [
+            {
+                "t": "set",
+                "p": "seuil_hum_sol",
+                "pt": "flow",
+                "to": "30",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "seuil_lux_max",
+                "pt": "flow",
+                "to": "800",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "mode_actuel",
+                "pt": "flow",
+                "to": "auto",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 840,
         "wires": [
             []
         ]
