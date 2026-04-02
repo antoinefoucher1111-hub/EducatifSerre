@@ -1439,7 +1439,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "CREATE TABLE IF NOT EXISTS logs (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL\n);",
+        "template": "CREATE TABLE IF NOT EXISTS logs_expert (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    culture TEXT,           -- NOUVEAU : Pour savoir si c'est Fraise ou Tomate\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL,\n    etat_pompe BOOLEAN,     -- NOUVEAU : Pour croiser l'arrosage et l'humidité\n    etat_volets TEXT\n);",
         "output": "str",
         "x": 860,
         "y": 860,
@@ -1675,7 +1675,7 @@
         "id": "92c523be397e8236",
         "type": "inject",
         "z": "0b147d39fb575ebc",
-        "name": "",
+        "name": "Injection pour BDD",
         "props": [
             {
                 "p": "payload"
@@ -1692,7 +1692,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 630,
+        "x": 650,
         "y": 880,
         "wires": [
             [
