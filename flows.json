@@ -1279,28 +1279,6 @@
         ]
     },
     {
-        "id": "b5d533c1b941ada7",
-        "type": "function",
-        "z": "0b147d39fb575ebc",
-        "name": "Générateur Météo",
-        "func": "// On génère des valeurs qui changent à chaque exécution !\n\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 15 + 15) * 10) / 10, // Varie entre 15.0 et 30.0 °C\n        hum: Math.round(Math.random() * 40 + 30)               // Varie entre 30 et 70 %\n    },\n    sol_moyenne: {\n        temp: Math.round((Math.random() * 10 + 12) * 10) / 10, // Varie entre 12.0 et 22.0 °C\n        hum: Math.round(Math.random() * 60 + 20)               // Varie entre 20 et 80 %\n    },\n    lumiere: Math.round(Math.random() * 900 + 100),            // Varie entre 100 et 1000 Lux\n    erreurs: false\n};\n\nflow.set(\"meteo_actuelle\", msg.payload);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 810,
-        "y": 340,
-        "wires": [
-            [
-                "7d6d3a4a7fcbfeff",
-                "ca5a29b66d24410a",
-                "132df9aec04d5a09"
-            ]
-        ]
-    },
-    {
         "id": "74345062b256d17c",
         "type": "ui_switch",
         "z": "0b147d39fb575ebc",
@@ -1779,7 +1757,11 @@
         "y": 240,
         "wires": [
             [
-                "6d86629c28491505"
+                "6d86629c28491505",
+                "ca5a29b66d24410a",
+                "f5fc3057f1588faf",
+                "132df9aec04d5a09",
+                "7d6d3a4a7fcbfeff"
             ]
         ]
     },
@@ -1799,7 +1781,11 @@
         "y": 300,
         "wires": [
             [
-                "7e13cffeedad751f"
+                "7e13cffeedad751f",
+                "ca5a29b66d24410a",
+                "f5fc3057f1588faf",
+                "132df9aec04d5a09",
+                "7d6d3a4a7fcbfeff"
             ]
         ]
     },
@@ -1815,8 +1801,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 240,
+        "x": 540,
+        "y": 260,
         "wires": [
             []
         ]
@@ -1863,15 +1849,12 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 70,
+        "x": 90,
         "y": 340,
         "wires": [
             [
                 "3e1c578c5ad0709b",
-                "f5ef07a4b1b6ed01",
-                "d8e7a3fe412210e7",
-                "b51468065223d112",
-                "b5d533c1b941ada7"
+                "f5ef07a4b1b6ed01"
             ]
         ]
     },
@@ -1977,8 +1960,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 300,
+        "x": 550,
+        "y": 320,
         "wires": [
             []
         ]
