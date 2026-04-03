@@ -983,7 +983,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -1016,7 +1016,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Humidité Sol <= ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -1350,7 +1350,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "INSERT INTO logs_expert (culture, temp_air, hum_sol, lumiere) \nVALUES ('{{culture}}', {{payload.air.temp}}, {{payload.sol_moyenne.hum}}, {{payload.lumiere}});",
+        "template": "INSERT INTO logs_expert (culture, temp_air, hum_sol, lumiere) \nVALUES ('{{culture}}', {{payload.air.temp}}, {{payload.sol.hum}}, {{payload.lux}});",
         "output": "str",
         "x": 970,
         "y": 480,
@@ -1626,7 +1626,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Météo Fraises",
-        "func": "// Les fraises préfèrent la douceur (15 à 25°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 50) // 50 à 80%\n    },\n    sol: {\n        temp: Math.round((Math.random() * 20 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 40 + 50) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 40 + 40) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 600 + 200),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Fraises\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux FRAISES\nflow.set(\"fraise_meteo\", msg.payload);\n\nreturn msg;",
+        "func": "flow.set(\"fraise_alerte\", \"\");\n\nvar tempAir = Math.round((Math.random() * 6 + 16) * 10) / 10;\n\nmsg.payload = {\n    air: {\n        temp: tempAir,\n        hum: Math.round(Math.random() * 15 + 55)\n    },\n    sol: {\n        temp: Math.round((tempAir - 2) * 10) / 10,\n        hum: Math.round(Math.random() * 25 + 35)\n    },\n    lux: Math.round(Math.random() * 300 + 500)\n};\n\nmsg.culture = \"Fraises\";\nflow.set(\"fraise_meteo\", msg.payload);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1648,7 +1648,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Météo Tomates",
-        "func": "// Les tomates aiment la chaleur (22 à 26°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 18) * 10) / 10,\n        hum: Math.round(Math.random() * 15 + 60) // 60 à 75%\n    },\n    sol: {\n        temp: Math.round((Math.random() * 5 + 18) * 10) / 10,\n        hum: Math.round(Math.random() * 20 + 60) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 10 + 65) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 800 + 400),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Tomates\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux TOMATES\nflow.set(\"tomate_meteo\", msg.payload);\n\nreturn msg;",
+        "func": "flow.set(\"tomate_alerte\", \"\");\n\nvar tempAir = Math.round((Math.random() * 6 + 22) * 10) / 10;\n\nmsg.payload = {\n    air: {\n        temp: tempAir,\n        hum: Math.round(Math.random() * 10 + 40)\n    },\n    sol: {\n        temp: Math.round((tempAir - 2) * 10) / 10,\n        hum: Math.round(Math.random() * 25 + 25)\n    },\n    lux: Math.round(Math.random() * 400 + 600)\n};\n\nmsg.culture = \"Tomates\";\nflow.set(\"tomate_meteo\", msg.payload);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1741,7 +1741,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Couleur message SCADA",
-        "func": "// Le vigile lit les post-its des deux serres\nvar alerteF = flow.get(\"fraise_alerte\") || \"\";\nvar alerteT = flow.get(\"tomate_alerte\") || \"\"; // Même si la tomate n'existe pas encore, ça ne plantera pas\n\n// S'il y a du texte dans l'une des alertes\nif (alerteF !== \"\" || alerteT !== \"\") {\n    msg.couleur = \"#e74c3c\"; // Rouge Pompier\n    msg.titre = \"⚠️ SYSTÈME EN ALERTE\";\n    msg.detail = alerteF + alerteT; // On affiche les textes\n} \n// Si les deux alertes sont vides (tout va bien)\nelse {\n    msg.couleur = \"#2ecc71\"; // Vert Validé\n    msg.titre = \"✅ SYSTÈME OPTIMAL\";\n    msg.detail = \"Aucune anomalie détectée sur les cultures.\";\n}\n\nreturn msg;",
+        "func": "var alerteF = flow.get(\"fraise_alerte\") || \"\";\nvar alerteT = flow.get(\"tomate_alerte\") || \"\";\n\n// S'il y a une vraie alerte (texte non vide)\nif (alerteF !== \"\" || alerteT !== \"\") {\n    msg.couleur = \"#e74c3c\"; // Rouge\n    msg.titre = \"⚠️ SYSTÈME EN ALERTE\";\n    // On combine les textes avec un saut de ligne si les deux sont en panne\n    msg.detail = alerteF + (alerteF && alerteT ? \"<br>\" : \"\") + alerteT;\n}\n// Si tout est vide = Tout va bien !\nelse {\n    msg.couleur = \"#2ecc71\"; // Vert\n    msg.titre = \"✅ SYSTÈME OPTIMAL\";\n    msg.detail = \"Aucune anomalie détectée sur les cultures.\";\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2428,7 +2428,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -2510,7 +2510,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Humidité Sol <= ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -3234,14 +3234,16 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "{ \"sol_moyenne\": { \"hum\": 0 } }",
+        "payload": "{ \"sol.hum\": { \"hum\": 0 } }",
         "payloadType": "json",
         "topic": "culture.fraise",
         "topicType": "msg",
-        "x": 170,
-        "y": 940,
+        "x": 1610,
+        "y": 780,
         "wires": [
-            []
+            [
+                "a7cc80bbdab56a06"
+            ]
         ]
     },
     {
