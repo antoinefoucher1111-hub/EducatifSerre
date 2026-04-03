@@ -1347,20 +1347,6 @@
         ]
     },
     {
-        "id": "3037fb84d993a050",
-        "type": "sqlite",
-        "z": "0b147d39fb575ebc",
-        "mydb": "39adb336fda72678",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 550,
-        "y": 800,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "8700503d6ef36b76",
         "type": "ui_button",
         "z": "0b147d39fb575ebc",
@@ -1483,33 +1469,6 @@
         "className": "",
         "x": 1000,
         "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "92c523be397e8236",
-        "type": "inject",
-        "z": "0b147d39fb575ebc",
-        "name": "Injection pour BDD",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 650,
-        "y": 740,
         "wires": [
             []
         ]
@@ -1761,7 +1720,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 430,
         "y": 240,
         "wires": [
             [
@@ -1834,7 +1793,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 260,
+        "y": 300,
         "wires": [
             []
         ]
@@ -3166,6 +3125,35 @@
         "wires": [
             [
                 "0c241057a24b5743"
+            ]
+        ]
+    },
+    {
+        "id": "5abe68c3d12cb289",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "Actualisation historique ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "1c2b944491ea1ecd"
             ]
         ]
     },
