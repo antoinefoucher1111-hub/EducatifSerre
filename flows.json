@@ -980,9 +980,7 @@
             [
                 "36645593e2c06d24"
             ],
-            [
-                "41651955fb203eec"
-            ]
+            []
         ]
     },
     {
@@ -1449,7 +1447,7 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": "24",
+        "removeOlder": "8",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
@@ -1672,7 +1670,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 780,
+        "x": 760,
         "y": 240,
         "wires": [
             []
@@ -2198,9 +2196,7 @@
             [
                 "fdad93aa8e642f3c"
             ],
-            [
-                "5d90aca49c11a878"
-            ]
+            []
         ]
     },
     {
@@ -3115,44 +3111,6 @@
         "wires": []
     },
     {
-        "id": "41651955fb203eec",
-        "type": "function",
-        "z": "0b147d39fb575ebc",
-        "name": "SÉCURITÉ : Couper Pompe !",
-        "func": "// 1. On crée une alerte rouge absolue pour le Tab 1\nflow.set(\"fraise_alerte\", \"🚨 DÉFAILLANCE CAPTEUR D'HUMIDITÉ : ARRÊT D'URGENCE DE LA POMPE !\");\n\n// 2. On force l'ordre d'extinction de la machine (même si on était en mode Auto)\nmsg.payload = \"OFF\";\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1570,
-        "y": 880,
-        "wires": [
-            [
-                "1c1b1461cfc93c20"
-            ]
-        ]
-    },
-    {
-        "id": "5d90aca49c11a878",
-        "type": "function",
-        "z": "0b147d39fb575ebc",
-        "name": "SÉCURITÉ : Couper Pompe !",
-        "func": "// 1. On crée une alerte rouge absolue pour le Tab 1\nflow.set(\"tomate_alerte\", \"🚨 DÉFAILLANCE CAPTEUR D'HUMIDITÉ : ARRÊT D'URGENCE DE LA POMPE !\");\n\n// 2. On force l'ordre d'extinction de la machine (même si on était en mode Auto)\nmsg.payload = \"OFF\";\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1430,
-        "y": 1100,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "0c241057a24b5743",
         "type": "ui_toast",
         "z": "0b147d39fb575ebc",
@@ -3188,34 +3146,6 @@
         "wires": [
             [
                 "0c241057a24b5743"
-            ]
-        ]
-    },
-    {
-        "id": "a03c33ca0445f967",
-        "type": "ui_button",
-        "z": "0b147d39fb575ebc",
-        "name": "",
-        "group": "7cd7ac6d969288e9",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Simuler Panne Capteur",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "{ \"sol_moyenne\": { \"hum\": 0 } }",
-        "payloadType": "json",
-        "topic": "culture.Fraises",
-        "topicType": "msg",
-        "x": 1110,
-        "y": 740,
-        "wires": [
-            [
-                "7d6d3a4a7fcbfeff"
             ]
         ]
     }
