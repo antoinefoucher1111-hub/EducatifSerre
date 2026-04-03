@@ -654,8 +654,8 @@
         "name": "Ordre Accepté ",
         "statusCode": "",
         "headers": {},
-        "x": 620,
-        "y": 520,
+        "x": 640,
+        "y": 500,
         "wires": []
     },
     {
@@ -830,7 +830,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 1,
+        "order": 2,
         "width": "6",
         "height": "4",
         "gtype": "gage",
@@ -858,7 +858,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 2,
+        "order": 3,
         "width": "9",
         "height": "4",
         "label": "Graph Température Aire (°C)",
@@ -920,7 +920,8 @@
         "y": 600,
         "wires": [
             [
-                "7250843023e8c1fe"
+                "7250843023e8c1fe",
+                "4f9c14c024c81106"
             ]
         ]
     },
@@ -948,7 +949,8 @@
         "y": 640,
         "wires": [
             [
-                "7250843023e8c1fe"
+                "7250843023e8c1fe",
+                "4f9c14c024c81106"
             ]
         ]
     },
@@ -957,7 +959,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol_moyenne",
         "propertyType": "msg",
         "rules": [
             {
@@ -980,7 +982,9 @@
             [
                 "36645593e2c06d24"
             ],
-            []
+            [
+                "a7cc80bbdab56a06"
+            ]
         ]
     },
     {
@@ -1288,7 +1292,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "BDD Serre",
-        "x": 630,
+        "x": 670,
         "y": 700,
         "wires": [
             []
@@ -1499,7 +1503,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 3,
+        "order": 4,
         "width": "6",
         "height": "4",
         "gtype": "gage",
@@ -1555,7 +1559,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 4,
+        "order": 5,
         "width": "9",
         "height": "4",
         "label": "Graph Température Sol (°C)",
@@ -1835,8 +1839,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 350,
-        "y": 960,
+        "x": 370,
+        "y": 1280,
         "wires": [
             [
                 "e20d878fb0343885"
@@ -1862,8 +1866,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 350,
-        "y": 1000,
+        "x": 370,
+        "y": 1320,
         "wires": [
             [
                 "692b6961433d97f7"
@@ -1889,8 +1893,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 960,
+        "x": 600,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -1914,8 +1918,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 1000,
+        "x": 600,
+        "y": 1320,
         "wires": [
             []
         ]
@@ -1939,8 +1943,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 350,
-        "y": 1220,
+        "x": 370,
+        "y": 1540,
         "wires": [
             [
                 "94fd38b13ea91544"
@@ -1966,8 +1970,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 350,
-        "y": 1260,
+        "x": 370,
+        "y": 1580,
         "wires": [
             [
                 "14fbf3b30a6abc43"
@@ -1993,8 +1997,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 1220,
+        "x": 600,
+        "y": 1540,
         "wires": [
             []
         ]
@@ -2018,8 +2022,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 580,
-        "y": 1260,
+        "x": 600,
+        "y": 1580,
         "wires": [
             []
         ]
@@ -2030,8 +2034,8 @@
         "z": "0b147d39fb575ebc",
         "name": "Partie Tomates",
         "info": "",
-        "x": 120,
-        "y": 1220,
+        "x": 140,
+        "y": 1540,
         "wires": []
     },
     {
@@ -2040,8 +2044,8 @@
         "z": "0b147d39fb575ebc",
         "name": "Partie Fraises",
         "info": "",
-        "x": 110,
-        "y": 960,
+        "x": 130,
+        "y": 1280,
         "wires": []
     },
     {
@@ -2400,7 +2404,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol_moyenne",
         "propertyType": "msg",
         "rules": [
             {
@@ -2421,7 +2425,8 @@
         "y": 1020,
         "wires": [
             [
-                "fdad93aa8e642f3c"
+                "fdad93aa8e642f3c",
+                "5d90aca49c11a878"
             ],
             []
         ]
@@ -2643,7 +2648,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 5,
+        "order": 6,
         "width": "6",
         "height": "4",
         "gtype": "gage",
@@ -2671,7 +2676,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 6,
+        "order": 7,
         "width": "9",
         "height": "4",
         "label": "Graph Humidité Aire (°C)",
@@ -2715,7 +2720,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 7,
+        "order": 8,
         "width": "6",
         "height": "4",
         "gtype": "gage",
@@ -2771,7 +2776,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "group": "ec5ebbbb459a3ba3",
-        "order": 8,
+        "order": 9,
         "width": "9",
         "height": "4",
         "label": "Graph Humidité Sol (%)",
@@ -3160,7 +3165,147 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1290,
+        "x": 1430,
+        "y": 1100,
+        "wires": [
+            [
+                "8243ecdb55fdcb6d"
+            ]
+        ]
+    },
+    {
+        "id": "8243ecdb55fdcb6d",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1180,
+        "y": 1180,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
+        "id": "7f3f2b09eb3220cb",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1080,
+        "y": 1020,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
+        "id": "a7cc80bbdab56a06",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "SÉCURITÉ : Couper Pompe !",
+        "func": "// 1. On crée une alerte rouge absolue pour le Tab 1\nflow.set(\"fraise_alerte\", \"🚨 DÉFAILLANCE CAPTEUR D'HUMIDITÉ : ARRÊT D'URGENCE DE LA POMPE !\");\n\n// 2. On force l'ordre d'extinction de la machine (même si on était en mode Auto)\nmsg.payload = \"OFF\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 820,
+        "wires": [
+            [
+                "7f3f2b09eb3220cb",
+                "4f9c14c024c81106"
+            ]
+        ]
+    },
+    {
+        "id": "223d4f4f485e40f2",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "group": "7cd7ac6d969288e9",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Simuler Panne Capteur",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{ \"sol_moyenne\": { \"hum\": 0 } }",
+        "payloadType": "json",
+        "topic": "culture.fraise",
+        "topicType": "msg",
+        "x": 170,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f9c14c024c81106",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "Traducteur LED Pompe",
+        "func": "// Si l'ordre est d'allumer (adapte selon ce que ton nœud envoie, ex: \"ON\", true, ou \"Allumer\")\nif (msg.payload === \"ON\" || msg.payload === true || msg.payload === \"Allumer\") {\n    msg.color = \"#2ecc71\"; // Vert fluo\n    msg.etat = \"EN MARCHE\";\n} else {\n    msg.color = \"#e74c3c\"; // Rouge éteint\n    msg.etat = \"ARRÊTÉE\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 900,
+        "wires": [
+            [
+                "c6c8b80df3f0b70f"
+            ]
+        ]
+    },
+    {
+        "id": "c6c8b80df3f0b70f",
+        "type": "ui_template",
+        "z": "0b147d39fb575ebc",
+        "group": "ec5ebbbb459a3ba3",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div\n    style=\"display: flex; align-items: center; justify-content: center; padding: 10px; background-color: #2c3e50; border-radius: 8px; color: white;\">\n    <div\n        style=\"width: 20px; height: 20px; border-radius: 50%; background-color: {{msg.color}}; box-shadow: 0 0 12px {{msg.color}}; margin-right: 15px; transition: all 0.3s ease;\">\n    </div>\n\n    <span style=\"font-size: 16px; font-family: sans-serif; font-weight: bold;\">\n        Pompe Arrosage : {{msg.etat}}\n    </span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1860,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cfa759bc02af6ae",
+        "type": "ui_button",
+        "z": "0b147d39fb575ebc",
+        "name": "Bouton Export",
+        "group": "e00403959bfd9664",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "📥 Télécharger l'historique complet (CSV)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 960,
         "y": 1180,
         "wires": [
             []
