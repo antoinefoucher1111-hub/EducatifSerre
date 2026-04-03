@@ -24,6 +24,30 @@
         "env": []
     },
     {
+        "id": "1c1b1461cfc93c20",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 880,
+        "y": 780,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
+        "id": "431f61ad614f5df1",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1140,
+        "y": 1060,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
         "id": "7c68e5354ffa8fcf",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -1368,7 +1392,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 90,
+        "x": 150,
         "y": 880,
         "wires": [
             [
@@ -1385,7 +1409,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "SELECT date, culture, temp_air, hum_sol FROM logs_expert ORDER BY date ASC LIMIT 100;",
+        "template": "SELECT * FROM (SELECT date, culture, temp_air, hum_sol FROM logs_expert ORDER BY date DESC LIMIT 200) ORDER BY date ASC;",
         "output": "str",
         "x": 400,
         "y": 880,
@@ -1416,7 +1440,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traduire pour Graphique",
-        "func": "var messages = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // On traduit la date de la base de données pour le graphique\n    var temps = new Date(ligne.date).getTime();\n\n    // On crée un point précis sur la courbe\n    messages.push({\n        topic: ligne.culture, // \"Fraises\" ou \"Tomates\" (crée la légende)\n        payload: ligne.temp_air,\n        timestamp: temps // C'est LE secret pour dessiner le passé !\n    });\n}\n\n// On envoie tous les points d'un coup au graphique\nreturn [messages];",
+        "func": "var messages = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // Le \"Z\" force Node-RED à appliquer le bon fuseau horaire (+2h pour la France)\n    var temps = new Date(ligne.date + \"Z\").getTime();\n\n    messages.push({\n        topic: ligne.culture, \n        payload: ligne.temp_air,\n        timestamp: temps \n    });\n}\n\nreturn [messages];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1449,7 +1473,7 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": "1",
+        "removeOlder": "24",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
@@ -1706,7 +1730,8 @@
                 "3e1c578c5ad0709b",
                 "f5ef07a4b1b6ed01",
                 "d8e7a3fe412210e7",
-                "b51468065223d112"
+                "b51468065223d112",
+                "1c2b944491ea1ecd"
             ]
         ]
     },
@@ -3133,278 +3158,6 @@
         ]
     },
     {
-        "id": "5abe68c3d12cb289",
-        "type": "inject",
-        "z": "0b147d39fb575ebc",
-        "name": "Actualisation historique ",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "3",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 170,
-        "y": 800,
-        "wires": [
-            [
-                "1c2b944491ea1ecd"
-            ]
-        ]
-    },
-    {
-        "id": "3ae3bb251d539059",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Météo Fraises",
-        "func": "// Les fraises préfèrent la douceur (15 à 25°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 50) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 40 + 40) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 600 + 200),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Fraises\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux FRAISES\nflow.set(\"fraise_meteo\", msg.payload);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 200,
-        "wires": [
-            [
-                "762380997fec398f"
-            ]
-        ]
-    },
-    {
-        "id": "32b1cd2573f62313",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Météo Tomates",
-        "func": "// Les tomates aiment la chaleur (20 à 35°C)\nmsg.payload = {\n    air: { \n        temp: Math.round((Math.random() * 15 + 20) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 40) // 40 à 70%\n    },\n    sol_moyenne: { \n        hum: Math.round(Math.random() * 40 + 30) // 30 à 70%\n    },\n    lumiere: Math.round(Math.random() * 800 + 400), // Plus de soleil\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Tomates\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux TOMATES\nflow.set(\"tomate_meteo\", msg.payload);\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 260,
-        "wires": [
-            [
-                "9f230aed857dfb3b"
-            ]
-        ]
-    },
-    {
-        "id": "762380997fec398f",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Analyse & Action fraise",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"fraise_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"fraise_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Fraises trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Fraises (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"fraise_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "877547e407e5efa5",
-        "type": "ui_template",
-        "z": "802ece0f3d2ca554",
-        "group": "d4b412b944b9b9d5",
-        "name": "Écran d'Alerte",
-        "order": 1,
-        "width": "0",
-        "height": "0",
-        "format": "<div\n    style=\"padding: 20px; border-radius: 10px; background-color: {{msg.couleur}}; color: white; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background-color 0.5s;\">\n    <h2 style=\"margin: 0; font-family: sans-serif; font-weight: bold;\">{{msg.titre}}</h2>\n    <p style=\"margin: 10px 0 0 0; font-size: 16px;\">{{msg.detail}}</p>\n</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 720,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ea7240a9c7a0d214",
-        "type": "inject",
-        "z": "802ece0f3d2ca554",
-        "name": "Vigile",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 300,
-        "wires": [
-            [
-                "139a4aea1f7659e0",
-                "f663b6820e06620b",
-                "3ae3bb251d539059",
-                "32b1cd2573f62313"
-            ]
-        ]
-    },
-    {
-        "id": "139a4aea1f7659e0",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Couleur message SCADA",
-        "func": "// Le vigile lit les post-its des deux serres\nvar alerteF = flow.get(\"fraise_alerte\") || \"\";\nvar alerteT = flow.get(\"tomate_alerte\") || \"\"; // Même si la tomate n'existe pas encore, ça ne plantera pas\n\n// S'il y a du texte dans l'une des alertes\nif (alerteF !== \"\" || alerteT !== \"\") {\n    msg.couleur = \"#e74c3c\"; // Rouge Pompier\n    msg.titre = \"⚠️ SYSTÈME EN ALERTE\";\n    msg.detail = alerteF + alerteT; // On affiche les textes\n} \n// Si les deux alertes sont vides (tout va bien)\nelse {\n    msg.couleur = \"#2ecc71\"; // Vert Validé\n    msg.titre = \"✅ SYSTÈME OPTIMAL\";\n    msg.detail = \"Aucune anomalie détectée sur les cultures.\";\n}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 430,
-        "y": 320,
-        "wires": [
-            [
-                "877547e407e5efa5"
-            ]
-        ]
-    },
-    {
-        "id": "d05948164179bb1f",
-        "type": "ui_slider",
-        "z": "802ece0f3d2ca554",
-        "name": "Curseur Fréquence",
-        "label": "Fréquence de relevé (minutes)",
-        "tooltip": "",
-        "group": "7bee753c65333fc6",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": "1",
-        "max": "60",
-        "step": 1,
-        "className": "",
-        "x": 410,
-        "y": 420,
-        "wires": [
-            [
-                "4d7bbdfad62cc9c8"
-            ]
-        ]
-    },
-    {
-        "id": "4d7bbdfad62cc9c8",
-        "type": "change",
-        "z": "802ece0f3d2ca554",
-        "name": "Mémoriser Fréquence",
-        "rules": [
-            {
-                "t": "set",
-                "p": "frequence_minutes",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 740,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f663b6820e06620b",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Horloge Centrale (Déclencheur)",
-        "func": "// 1. On lit la fréquence choisie par l'utilisateur (par défaut 5 minutes)\nvar frequenceMin = flow.get(\"frequence_minutes\") ||  5;\n\n// 2. On lit l'heure du dernier relevé (0 si c'est le tout premier)\nvar dernierReleve = flow.get(\"heure_dernier_releve\") ||  0;\n\n// 3. On regarde l'heure exacte qu'il est maintenant (en millisecondes)\nvar maintenant = new Date().getTime();\n\n// 4. On calcule combien de temps on doit attendre (minutes -> millisecondes)\nvar tempsAttente = frequenceMin * 60 * 1000;\n\n// 5. Si le temps écoulé est plus grand que le temps d'attente...\nif (maintenant - dernierReleve >= tempsAttente) {\n    // ... On met à jour l'heure du dernier relevé !\n    flow.set(\"heure_dernier_releve\", maintenant);\n\n    // Et on donne le feu vert pour déclencher les capteurs\n    return msg; \n}\n\n// Sinon, on ne fait rien (on attend la prochaine seconde)\nreturn null;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9f230aed857dfb3b",
-        "type": "function",
-        "z": "802ece0f3d2ca554",
-        "name": "Analyse & Action tomate",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"tomate_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"tomate_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Tomate trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Tomate (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"tomate_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 690,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1c1b1461cfc93c20",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 880,
-        "y": 780,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
-        "id": "431f61ad614f5df1",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 1140,
-        "y": 1060,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
         "id": "613f7616dcb584ce",
         "type": "comment",
         "z": "0b147d39fb575ebc",
@@ -3436,8 +3189,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1430,
-        "y": 820,
+        "x": 1570,
+        "y": 880,
         "wires": [
             [
                 "1c1b1461cfc93c20"
