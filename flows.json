@@ -1349,20 +1349,6 @@
         ]
     },
     {
-        "id": "3037fb84d993a050",
-        "type": "sqlite",
-        "z": "0b147d39fb575ebc",
-        "mydb": "39adb336fda72678",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 570,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "8700503d6ef36b76",
         "type": "ui_button",
         "z": "0b147d39fb575ebc",
@@ -1382,7 +1368,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 90,
+        "x": 150,
         "y": 880,
         "wires": [
             [
@@ -1399,7 +1385,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "SELECT date, culture, temp_air, hum_sol FROM logs_expert ORDER BY date ASC LIMIT 100;",
+        "template": "SELECT * FROM (SELECT date, culture, temp_air, hum_sol FROM logs_expert ORDER BY date DESC LIMIT 200) ORDER BY date ASC;",
         "output": "str",
         "x": 400,
         "y": 880,
@@ -1430,7 +1416,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traduire pour Graphique",
-        "func": "var messages = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // On traduit la date de la base de données pour le graphique\n    var temps = new Date(ligne.date).getTime();\n\n    // On crée un point précis sur la courbe\n    messages.push({\n        topic: ligne.culture, // \"Fraises\" ou \"Tomates\" (crée la légende)\n        payload: ligne.temp_air,\n        timestamp: temps // C'est LE secret pour dessiner le passé !\n    });\n}\n\n// On envoie tous les points d'un coup au graphique\nreturn [messages];",
+        "func": "var messages = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // Le \"Z\" force Node-RED à appliquer le bon fuseau horaire (+2h pour la France)\n    var temps = new Date(ligne.date + \"Z\").getTime();\n\n    messages.push({\n        topic: ligne.culture, \n        payload: ligne.temp_air,\n        timestamp: temps \n    });\n}\n\nreturn [messages];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1463,7 +1449,7 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": "1",
+        "removeOlder": "24",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
@@ -1720,7 +1706,8 @@
                 "3e1c578c5ad0709b",
                 "f5ef07a4b1b6ed01",
                 "d8e7a3fe412210e7",
-                "b51468065223d112"
+                "b51468065223d112",
+                "1c2b944491ea1ecd"
             ]
         ]
     },
@@ -1736,7 +1723,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 430,
         "y": 240,
         "wires": [
             [
@@ -1809,7 +1796,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 280,
+        "y": 300,
         "wires": [
             []
         ]
@@ -3139,10 +3126,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1430,
-        "y": 820,
+        "x": 1570,
+        "y": 880,
         "wires": [
-            []
+            [
+                "1c1b1461cfc93c20"
+            ]
         ]
     },
     {
