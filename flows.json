@@ -659,28 +659,17 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 410,
-        "y": 600,
+        "x": 370,
+        "y": 540,
         "wires": [
             [
                 "f5083363e996cb67",
                 "dcee870708468bcb"
             ],
             [
-                "422b198c85dec333"
+                "88788a51af726b88"
             ]
         ]
-    },
-    {
-        "id": "422b198c85dec333",
-        "type": "http response",
-        "z": "0b147d39fb575ebc",
-        "name": "Refusé (Mode Auto)",
-        "statusCode": "403",
-        "headers": {},
-        "x": 640,
-        "y": 640,
-        "wires": []
     },
     {
         "id": "f5083363e996cb67",
@@ -1200,7 +1189,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "10",
+        "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -1208,10 +1197,11 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 720,
+        "y": 700,
         "wires": [
             [
-                "7ccce05a819c694e"
+                "7ccce05a819c694e",
+                "43783ccf213eb86a"
             ]
         ]
     },
@@ -1339,10 +1329,10 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "CREATE TABLE IF NOT EXISTS logs_expert (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    culture TEXT,           -- NOUVEAU : Pour savoir si c'est Fraise ou Tomate\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL,\n    etat_pompe BOOLEAN,     -- NOUVEAU : Pour croiser l'arrosage et l'humidité\n    etat_volets TEXT\n);",
+        "template": "CREATE TABLE IF NOT EXISTS logs_expert (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    date DATETIME DEFAULT CURRENT_TIMESTAMP,\n    culture TEXT,\n    temp_air REAL,\n    hum_sol REAL,\n    lumiere REAL\n);",
         "output": "str",
-        "x": 360,
-        "y": 800,
+        "x": 860,
+        "y": 720,
         "wires": [
             [
                 "3ec7d0fa11035c6b"
@@ -1358,10 +1348,10 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "INSERT INTO logs (temp_air, hum_sol, lumiere) \nVALUES ({{payload.air.temp}}, {{payload.sol_moyenne.hum}}, {{payload.lumiere}});",
+        "template": "INSERT INTO logs_expert (culture, temp_air, hum_sol, lumiere) \nVALUES ('{{culture}}', {{payload.air.temp}}, {{payload.sol_moyenne.hum}}, {{payload.lumiere}});",
         "output": "str",
         "x": 970,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "1414de4786710274"
@@ -1380,54 +1370,6 @@
         "y": 520,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "712d0a8cd9ca4fcd",
-        "type": "inject",
-        "z": "0b147d39fb575ebc",
-        "name": "Intervalle de sauvegarde",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1440",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 150,
-        "y": 1000,
-        "wires": [
-            [
-                "845a0e85fcd6b8f8"
-            ]
-        ]
-    },
-    {
-        "id": "845a0e85fcd6b8f8",
-        "type": "template",
-        "z": "0b147d39fb575ebc",
-        "name": "Intervalle tps",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "sql",
-        "syntax": "mustache",
-        "template": "DELETE FROM logs WHERE date < datetime('now', '-7 days');",
-        "output": "str",
-        "x": 370,
-        "y": 1000,
-        "wires": [
-            [
-                "3037fb84d993a050"
-            ]
         ]
     },
     {
@@ -1464,8 +1406,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 110,
-        "y": 940,
+        "x": 90,
+        "y": 880,
         "wires": [
             [
                 "1c2b944491ea1ecd"
@@ -1481,10 +1423,10 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "SELECT date, temp_air, hum_sol FROM logs ORDER BY id ASC;",
+        "template": "SELECT date, culture, temp_air, hum_sol FROM logs_expert ORDER BY date ASC LIMIT 100;",
         "output": "str",
         "x": 400,
-        "y": 940,
+        "y": 880,
         "wires": [
             [
                 "33e13f3b3f8631ba"
@@ -1512,7 +1454,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traduire pour Graphique",
-        "func": "// Sécurité : si la base est vide, on arrête tout\nif (!msg.payload || msg.payload.length === 0) {\n    return null;\n}\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // LA CORRECTION EST ICI : On remplace l'espace par un \"T\"\n    var dateCorrige = ligne.date.replace(\" \", \"T\") + \"Z\";\n    var temps = new Date(dateCorrige).getTime();\n\n    // On envoie le point de température\n    node.send({\n        topic: \"Température Air (°C)\",\n        payload: ligne.temp_air,\n        timestamp: temps\n    });\n\n    // On envoie le point d'humidité\n    node.send({\n        topic: \"Humidité Sol (%)\",\n        payload: ligne.hum_sol,\n        timestamp: temps\n    });\n}\n\nreturn null;",
+        "func": "var messages = [];\n\nfor (var i = 0; i < msg.payload.length; i++) {\n    var ligne = msg.payload[i];\n\n    // On traduit la date de la base de données pour le graphique\n    var temps = new Date(ligne.date).getTime();\n\n    // On crée un point précis sur la courbe\n    messages.push({\n        topic: ligne.culture, // \"Fraises\" ou \"Tomates\" (crée la légende)\n        payload: ligne.temp_air,\n        timestamp: temps // C'est LE secret pour dessiner le passé !\n    });\n}\n\n// On envoie tous les points d'un coup au graphique\nreturn [messages];",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1520,7 +1462,7 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 940,
+        "y": 880,
         "wires": [
             [
                 "1454d4b5bd711b02"
@@ -1538,14 +1480,14 @@
         "height": 0,
         "label": "Graphique Historique",
         "chartType": "line",
-        "legend": "false",
+        "legend": "true",
         "xformat": "HH:mm:ss",
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": 1,
+        "removeOlder": "1",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
@@ -1566,7 +1508,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 1000,
-        "y": 1000,
+        "y": 940,
         "wires": [
             []
         ]
@@ -1592,12 +1534,10 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 840,
+        "x": 650,
+        "y": 740,
         "wires": [
-            [
-                "43783ccf213eb86a"
-            ]
+            []
         ]
     },
     {
@@ -1919,8 +1859,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
-        "y": 300,
+        "x": 550,
+        "y": 260,
         "wires": [
             []
         ]
@@ -2512,8 +2452,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 810,
-        "y": 1180,
+        "x": 350,
+        "y": 960,
         "wires": [
             [
                 "e20d878fb0343885"
@@ -2539,8 +2479,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 810,
-        "y": 1220,
+        "x": 350,
+        "y": 1000,
         "wires": [
             [
                 "692b6961433d97f7"
@@ -2566,8 +2506,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 1180,
+        "x": 580,
+        "y": 960,
         "wires": [
             []
         ]
@@ -2591,8 +2531,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 1220,
+        "x": 580,
+        "y": 1000,
         "wires": [
             []
         ]
@@ -2616,8 +2556,8 @@
         "max": "100",
         "step": 1,
         "className": "",
-        "x": 810,
-        "y": 1440,
+        "x": 350,
+        "y": 1220,
         "wires": [
             [
                 "94fd38b13ea91544"
@@ -2643,8 +2583,8 @@
         "max": "1000",
         "step": "10",
         "className": "",
-        "x": 810,
-        "y": 1480,
+        "x": 350,
+        "y": 1260,
         "wires": [
             [
                 "14fbf3b30a6abc43"
@@ -2670,8 +2610,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 1440,
+        "x": 580,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2695,8 +2635,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 1480,
+        "x": 580,
+        "y": 1260,
         "wires": [
             []
         ]
@@ -2707,8 +2647,8 @@
         "z": "0b147d39fb575ebc",
         "name": "Partie Tomates",
         "info": "",
-        "x": 580,
-        "y": 1440,
+        "x": 120,
+        "y": 1220,
         "wires": []
     },
     {
@@ -2717,8 +2657,8 @@
         "z": "0b147d39fb575ebc",
         "name": "Partie Fraises",
         "info": "",
-        "x": 570,
-        "y": 1180,
+        "x": 110,
+        "y": 960,
         "wires": []
     },
     {
@@ -3495,6 +3435,45 @@
         "y": 260,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "0c241057a24b5743",
+        "type": "ui_toast",
+        "z": "0b147d39fb575ebc",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Alerte",
+        "name": "",
+        "x": 730,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "88788a51af726b88",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "Notif",
+        "func": "msg.payload = \"Action refusée : Passez en mode Manuel !\";",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 620,
+        "wires": [
+            [
+                "0c241057a24b5743"
+            ]
         ]
     }
 ]
