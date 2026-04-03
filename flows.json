@@ -24,30 +24,6 @@
         "env": []
     },
     {
-        "id": "1c1b1461cfc93c20",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 880,
-        "y": 780,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
-        "id": "431f61ad614f5df1",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 1140,
-        "y": 1060,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
         "id": "7c68e5354ffa8fcf",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -679,7 +655,7 @@
         "statusCode": "",
         "headers": {},
         "x": 620,
-        "y": 560,
+        "y": 520,
         "wires": []
     },
     {
@@ -695,7 +671,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 920,
+        "x": 1000,
         "y": 600,
         "wires": []
     },
@@ -1004,9 +980,7 @@
             [
                 "36645593e2c06d24"
             ],
-            [
-                "41651955fb203eec"
-            ]
+            []
         ]
     },
     {
@@ -1696,7 +1670,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 680,
+        "x": 760,
         "y": 240,
         "wires": [
             []
@@ -2449,9 +2423,7 @@
             [
                 "fdad93aa8e642f3c"
             ],
-            [
-                "5d90aca49c11a878"
-            ]
+            []
         ]
     },
     {
@@ -3175,26 +3147,6 @@
         "x": 1360,
         "y": 980,
         "wires": []
-    },
-    {
-        "id": "41651955fb203eec",
-        "type": "function",
-        "z": "0b147d39fb575ebc",
-        "name": "SÉCURITÉ : Couper Pompe !",
-        "func": "// 1. On crée une alerte rouge absolue pour le Tab 1\nflow.set(\"fraise_alerte\", \"🚨 DÉFAILLANCE CAPTEUR D'HUMIDITÉ : ARRÊT D'URGENCE DE LA POMPE !\");\n\n// 2. On force l'ordre d'extinction de la machine (même si on était en mode Auto)\nmsg.payload = \"OFF\";\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1570,
-        "y": 880,
-        "wires": [
-            [
-                "1c1b1461cfc93c20"
-            ]
-        ]
     },
     {
         "id": "5d90aca49c11a878",
