@@ -48,16 +48,6 @@
         ]
     },
     {
-        "id": "b6c1a80c27b6be41",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 1100,
-        "y": 1000,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7c68e5354ffa8fcf",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -993,7 +983,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -1016,9 +1006,7 @@
             [
                 "36645593e2c06d24"
             ],
-            [
-                "a7cc80bbdab56a06"
-            ]
+            []
         ]
     },
     {
@@ -1026,7 +1014,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Humidité Sol <= ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -1360,7 +1348,7 @@
         "fieldType": "msg",
         "format": "sql",
         "syntax": "mustache",
-        "template": "INSERT INTO logs_expert (culture, temp_air, hum_sol, lumiere) \nVALUES ('{{culture}}', {{payload.air.temp}}, {{payload.sol_moyenne.hum}}, {{payload.lumiere}});",
+        "template": "INSERT INTO logs_expert (culture, temp_air, hum_sol, lumiere) \nVALUES ('{{culture}}', {{payload.air.temp}}, {{payload.sol.hum}}, {{payload.lux}});",
         "output": "str",
         "x": 970,
         "y": 480,
@@ -1639,7 +1627,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Météo Fraises",
-        "func": "// Les fraises préfèrent la douceur (15 à 25°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 30 + 50) // 50 à 80%\n    },\n    sol: {\n        temp: Math.round((Math.random() * 20 + 15) * 10) / 10,\n        hum: Math.round(Math.random() * 40 + 50) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 40 + 40) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 600 + 200),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Fraises\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux FRAISES\nflow.set(\"fraise_meteo\", msg.payload);\n\nreturn msg;",
+        "func": "flow.set(\"fraise_alerte\", \"\");\n\nvar tempAir = Math.round((Math.random() * 6 + 16) * 10) / 10;\n\nmsg.payload = {\n    air: {\n        temp: tempAir,\n        hum: Math.round(Math.random() * 15 + 55)\n    },\n    sol: {\n        temp: Math.round((tempAir - 2) * 10) / 10,\n        hum: Math.round(Math.random() * 25 + 35)\n    },\n    lux: Math.round(Math.random() * 300 + 500)\n};\n\nmsg.culture = \"Fraises\";\nflow.set(\"fraise_meteo\", msg.payload);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1661,7 +1649,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Météo Tomates",
-        "func": "// Les tomates aiment la chaleur (22 à 26°C)\nmsg.payload = {\n    air: {\n        temp: Math.round((Math.random() * 10 + 18) * 10) / 10,\n        hum: Math.round(Math.random() * 15 + 60) // 60 à 75%\n    },\n    sol: {\n        temp: Math.round((Math.random() * 5 + 18) * 10) / 10,\n        hum: Math.round(Math.random() * 20 + 60) // 50 à 80%\n    },\n    sol_moyenne: {\n        hum: Math.round(Math.random() * 10 + 65) // 40 à 80%\n    },\n    lumiere: Math.round(Math.random() * 800 + 400),\n    erreurs: false\n};\n\n// 1. On identifie la culture pour la base de données\nmsg.culture = \"Tomates\";\n\n// 2. On sauvegarde cette météo sur le post-it spécifique aux TOMATES\nflow.set(\"tomate_meteo\", msg.payload);\n\nreturn msg;",
+        "func": "flow.set(\"tomate_alerte\", \"\");\n\nvar tempAir = Math.round((Math.random() * 6 + 22) * 10) / 10;\n\nmsg.payload = {\n    air: {\n        temp: tempAir,\n        hum: Math.round(Math.random() * 10 + 40)\n    },\n    sol: {\n        temp: Math.round((tempAir - 2) * 10) / 10,\n        hum: Math.round(Math.random() * 25 + 25)\n    },\n    lux: Math.round(Math.random() * 400 + 600)\n};\n\nmsg.culture = \"Tomates\";\nflow.set(\"tomate_meteo\", msg.payload);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1683,7 +1671,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Analyse & Action fraise",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"fraise_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"fraise_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\nvar pluieDemain = flow.get(\"pluie_prevue\") || false;\n\n// Si la pluie est prévue, on n'arrose que si c'est VRAIMENT sec (seuil divisé par 2)\nvar seuilAjuste = pluieDemain ? (seuilHum / 2) : seuilHum;\n\nif (msg.payload.sol_moyenne.hum <= seuilAjuste) {\n    arrosage = true;\n}\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Fraises trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n    \n\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Fraises (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"fraise_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
+        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut)\nvar seuilHum = flow.get(\"fraise_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"fraise_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Message vide par défaut\nvar arrosage = false;\nvar fermer_volets = false;\nvar pluieDemain = flow.get(\"pluie_prevue\") || false;\n\n// Si la pluie est prévue, on n'arrose que si c'est VRAIMENT sec\nvar seuilAjuste = pluieDemain ? (seuilHum / 2) : seuilHum;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol.hum <= seuilAjuste) {\n    alerte += \"💧 Sol Fraises trop sec (\" + msg.payload.sol.hum + \"%) \\n\";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lux >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur Fraises (\" + msg.payload.lux + \" lux) \\n\";\n    fermer_volets = true;\n}\n\n// 3. On ne sauvegarde cette alerte \"douce\" que si on n'est PAS en arrêt d'urgence\nvar alerteUrgence = flow.get(\"fraise_alerte\");\nif (!alerteUrgence || !alerteUrgence.includes(\"DÉFAILLANCE\")) {\n    flow.set(\"fraise_alerte\", alerte);\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1754,7 +1742,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Couleur message SCADA",
-        "func": "// Le vigile lit les post-its des deux serres\nvar alerteF = flow.get(\"fraise_alerte\") || \"\";\nvar alerteT = flow.get(\"tomate_alerte\") || \"\"; // Même si la tomate n'existe pas encore, ça ne plantera pas\n\n// S'il y a du texte dans l'une des alertes\nif (alerteF !== \"\" || alerteT !== \"\") {\n    msg.couleur = \"#e74c3c\"; // Rouge Pompier\n    msg.titre = \"⚠️ SYSTÈME EN ALERTE\";\n    msg.detail = alerteF + alerteT; // On affiche les textes\n} \n// Si les deux alertes sont vides (tout va bien)\nelse {\n    msg.couleur = \"#2ecc71\"; // Vert Validé\n    msg.titre = \"✅ SYSTÈME OPTIMAL\";\n    msg.detail = \"Aucune anomalie détectée sur les cultures.\";\n}\n\nreturn msg;",
+        "func": "var alerteF = flow.get(\"fraise_alerte\") || \"\";\nvar alerteT = flow.get(\"tomate_alerte\") || \"\";\n\nif (alerteF !== \"\" || alerteT !== \"\") {\n    msg.couleur = \"#e74c3c\"; // Rouge\n    msg.titre = \"⚠️ SYSTÈME EN ALERTE\";\n    // On utilise \\n\\n pour faire un vrai double saut de ligne invisible\n    msg.detail = alerteF + (alerteF && alerteT ? \"\\n\\n\" : \"\") + alerteT;\n} else {\n    msg.couleur = \"#2ecc71\"; // Vert\n    msg.titre = \"✅ SYSTÈME OPTIMAL\";\n    msg.detail = \"Aucune anomalie détectée sur les cultures.\";\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1844,7 +1832,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Analyse & Action tomate",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"tomate_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"tomate_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Tomates trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Tomates (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"tomate_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
+        "func": "// 1. On lit les curseurs\nvar seuilHum = flow.get(\"tomate_seuil_hum\") || 30; // Les tomates ont besoin de moins d'eau\nvar seuilLux = flow.get(\"tomate_seuil_lux\") || 800;\n\nvar alerte = \"\";\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare\n// Test de l'humidité\nif (msg.payload.sol.hum <= seuilHum) {\n    alerte += \"💧 Sol Tomates trop sec (\" + msg.payload.sol.hum + \"%) \\n\";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lux >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur Tomates (\" + msg.payload.lux + \" lux) \\n\";\n    fermer_volets = true;\n}\n\n// 3. On sauvegarde si pas d'arrêt d'urgence\nvar alerteUrgence = flow.get(\"tomate_alerte\");\nif (!alerteUrgence || !alerteUrgence.includes(\"DÉFAILLANCE\")) {\n    flow.set(\"tomate_alerte\", alerte);\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2441,7 +2429,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Capteurs OK ?",
-        "property": "payload.sol_moyenne",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -2462,8 +2450,7 @@
         "y": 1020,
         "wires": [
             [
-                "fdad93aa8e642f3c",
-                "5d90aca49c11a878"
+                "fdad93aa8e642f3c"
             ],
             []
         ]
@@ -2523,7 +2510,7 @@
         "type": "switch",
         "z": "0b147d39fb575ebc",
         "name": "Humidité Sol <= ?",
-        "property": "payload.sol_moyenne.hum",
+        "property": "payload.sol.hum",
         "propertyType": "msg",
         "rules": [
             {
@@ -3205,9 +3192,7 @@
         "x": 1430,
         "y": 1100,
         "wires": [
-            [
-                "8243ecdb55fdcb6d"
-            ]
+            []
         ]
     },
     {
@@ -3226,7 +3211,6 @@
         "y": 820,
         "wires": [
             [
-                "7f3f2b09eb3220cb",
                 "4f9c14c024c81106"
             ]
         ]
@@ -3247,14 +3231,16 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "{ \"sol_moyenne\": { \"hum\": 0 } }",
-        "payloadType": "json",
-        "topic": "culture.fraise",
+        "payload": "PANNE",
+        "payloadType": "str",
+        "topic": "payload",
         "topicType": "msg",
-        "x": 170,
-        "y": 940,
+        "x": 1590,
+        "y": 780,
         "wires": [
-            []
+            [
+                "a7cc80bbdab56a06"
+            ]
         ]
     },
     {
