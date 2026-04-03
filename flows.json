@@ -1473,7 +1473,7 @@
         "dot": false,
         "ymin": "",
         "ymax": "",
-        "removeOlder": "24",
+        "removeOlder": "1",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
@@ -1730,8 +1730,7 @@
                 "3e1c578c5ad0709b",
                 "f5ef07a4b1b6ed01",
                 "d8e7a3fe412210e7",
-                "b51468065223d112",
-                "1c2b944491ea1ecd"
+                "b51468065223d112"
             ]
         ]
     },
