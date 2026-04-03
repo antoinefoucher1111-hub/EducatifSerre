@@ -24,6 +24,40 @@
         "env": []
     },
     {
+        "id": "8243ecdb55fdcb6d",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1180,
+        "y": 1180,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
+        "id": "7f3f2b09eb3220cb",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1080,
+        "y": 1020,
+        "wires": [
+            [
+                "dcee870708468bcb"
+            ]
+        ]
+    },
+    {
+        "id": "b6c1a80c27b6be41",
+        "type": "junction",
+        "z": "0b147d39fb575ebc",
+        "x": 1100,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "7c68e5354ffa8fcf",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -1344,10 +1378,12 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 970,
-        "y": 520,
+        "x": 1310,
+        "y": 1280,
         "wires": [
-            []
+            [
+                "1bc10b1ce159600a"
+            ]
         ]
     },
     {
@@ -1646,7 +1682,7 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Analyse & Action fraise",
-        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"fraise_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"fraise_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\n\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Fraises trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Fraises (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"fraise_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
+        "func": "// 1. On lit les curseurs de la page web (avec des valeurs par défaut au cas où)\nvar seuilHum = flow.get(\"fraise_seuil_hum\") || 40;\nvar seuilLux = flow.get(\"fraise_seuil_lux\") || 800;\n\nvar alerte = \"\"; // Au départ, tout va bien, le message est vide\nvar arrosage = false;\nvar fermer_volets = false;\nvar pluieDemain = flow.get(\"pluie_prevue\") || false;\n\n// Si la pluie est prévue, on n'arrose que si c'est VRAIMENT sec (seuil divisé par 2)\nvar seuilAjuste = pluieDemain ? (seuilHum / 2) : seuilHum;\n\nif (msg.payload.sol_moyenne.hum <= seuilAjuste) {\n    arrosage = true;\n}\n// 2. On compare la météo avec les seuils\n// Test de l'humidité\nif (msg.payload.sol_moyenne.hum <= seuilHum) {\n    alerte += \"💧 Sol Fraises trop sec (\" + msg.payload.sol_moyenne.hum + \"%). \";\n    arrosage = true;\n    \n\n}\n\n// Test de la lumière\nif (msg.payload.lumiere >= seuilLux) {\n    alerte += \"☀️ Trop de soleil sur les Fraises (\" + msg.payload.lumiere + \" Lux). \";\n    fermer_volets = true;\n}\n\n// 3. On colle le message d'alerte sur un post-it pour que le Tab 1 puisse le lire\nflow.set(\"fraise_alerte\", alerte);\n\n// 4. On prépare les ordres pour les machines\nmsg.ordres = {\n    pompe: arrosage,\n    volets: fermer_volets ? \"descendre\" : \"monter\"\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -3174,30 +3210,6 @@
         ]
     },
     {
-        "id": "8243ecdb55fdcb6d",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 1180,
-        "y": 1180,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
-        "id": "7f3f2b09eb3220cb",
-        "type": "junction",
-        "z": "0b147d39fb575ebc",
-        "x": 1080,
-        "y": 1020,
-        "wires": [
-            [
-                "dcee870708468bcb"
-            ]
-        ]
-    },
-    {
         "id": "a7cc80bbdab56a06",
         "type": "function",
         "z": "0b147d39fb575ebc",
@@ -3308,7 +3320,140 @@
         "x": 960,
         "y": 1180,
         "wires": [
+            [
+                "930ca076dc938cb9"
+            ]
+        ]
+    },
+    {
+        "id": "930ca076dc938cb9",
+        "type": "template",
+        "z": "0b147d39fb575ebc",
+        "name": "Requête SQL",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "SELECT * FROM logs_expert ORDER BY date DESC;",
+        "output": "str",
+        "x": 1080,
+        "y": 1280,
+        "wires": [
+            [
+                "1414de4786710274"
+            ]
+        ]
+    },
+    {
+        "id": "0946dc65caa31eef",
+        "type": "ui_template",
+        "z": "0b147d39fb575ebc",
+        "group": "e00403959bfd9664",
+        "name": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n(function(scope) {\n    scope.$watch('msg', function(msg) {        if (msg && msg.payload && typeof msg.payload === 'string') {\n            var blob = new Blob([msg.payload], {type: 'text/csv;charset=utf-8;'});\n            var link = document.createElement(\"a\");\n            var url = URL.createObjectURL(blob);\n            link.setAttribute(\"href\", url);\n            link.setAttribute(\"download\", \"historique_serre_expert.csv\");\n            link.style.visibility = 'hidden';\n            document.body.appendChild(link);\n            link.click();\n            document.body.removeChild(link);\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1620,
+        "y": 1260,
+        "wires": [
             []
+        ]
+    },
+    {
+        "id": "cffa8b03ecb47311",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "Intervalles météo",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 950,
+        "y": 1340,
+        "wires": [
+            [
+                "203fa58225c1de3d"
+            ]
+        ]
+    },
+    {
+        "id": "203fa58225c1de3d",
+        "type": "http request",
+        "z": "0b147d39fb575ebc",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Angers,fr&appid=fc890c8e0b17546a4c8986864eb708bd&units=metric&lang=fr",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1210,
+        "y": 1360,
+        "wires": [
+            [
+                "51b0ebfc1e1cd236"
+            ]
+        ]
+    },
+    {
+        "id": "51b0ebfc1e1cd236",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "function 1",
+        "func": "// Sécurité : On vérifie que la météo a bien été téléchargée avant de la lire\nif (msg.payload && msg.payload.weather && msg.payload.weather.length > 0) {\n\n    var ciel = msg.payload.weather[0].main;\n    var desc = msg.payload.weather[0].description;\n    var temp = msg.payload.main.temp;\n    var previsionPluie = (ciel === \"Rain\" || ciel === \"Drizzle\");\n\n    flow.set(\"pluie_prevue\", previsionPluie);\n\n    if (previsionPluie) {\n        msg.payload = \"🌧️ Alerte Pluie : \" + desc + \" (\" + temp + \"°C) - Arrosage réduit\";\n    } else {\n        msg.payload = \"☀️ Beau temps : \" + desc + \" (\" + temp + \"°C)\";\n    }\n\n    flow.set(\"meteo_exterieure_texte\", msg.payload);\n\n} else {\n    // Si internet est coupé, on affiche ce message de secours au lieu de planter\n    msg.payload = \"📡 Impossible de récupérer la météo locale.\";\n    flow.set(\"meteo_exterieure_texte\", msg.payload);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1bc10b1ce159600a",
+        "type": "function",
+        "z": "0b147d39fb575ebc",
+        "name": "Traducteur Excel FR",
+        "func": "var data = msg.payload;\n\n// Sécurité : Si la base de données est vide, on annule\nif (!data || data.length === 0) {\n    return null;\n}\n\n// 1. Créer la ligne des titres (en-têtes)\nvar colonnes = Object.keys(data[0]);\nvar texteCSV = colonnes.join(\";\") + \"\\n\";\n\n// 2. Remplir avec les données de la serre\nfor (var i = 0; i < data.length; i++) {\n    var ligne = [];\n    for (var j = 0; j < colonnes.length; j++) {\n        var valeur = data[i][colonnes[j]];\n        \n        // ASTUCE EXPERT : On force les décimales avec une \",\" pour Excel Français\n        if (typeof valeur === \"number\") {\n            valeur = valeur.toString().replace(\".\", \",\");\n        }\n        \n        ligne.push(valeur);\n    }\n    texteCSV += ligne.join(\";\") + \"\\n\";\n}\n\n// On envoie le texte parfait au script de téléchargement\nmsg.payload = texteCSV;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1480,
+        "y": 1200,
+        "wires": [
+            [
+                "0946dc65caa31eef"
+            ]
         ]
     }
 ]
