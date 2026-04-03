@@ -1382,7 +1382,8 @@
         "y": 1280,
         "wires": [
             [
-                "1bc10b1ce159600a"
+                "7a4901119bba7be4",
+                "43d597a46a924e7d"
             ]
         ]
     },
@@ -1461,7 +1462,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
+        "x": 890,
         "y": 880,
         "wires": [
             [
@@ -3313,9 +3314,9 @@
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
+        "payload": "{\"download\": true}",
+        "payloadType": "json",
+        "topic": "action",
         "topicType": "msg",
         "x": 960,
         "y": 1180,
@@ -3334,7 +3335,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "SELECT * FROM logs_expert ORDER BY date DESC;",
+        "template": "SELECT * FROM (SELECT date, culture, temp_air, hum_sol, lumiere FROM logs_expert ORDER BY date DESC LIMIT 200) ORDER BY date ASC;",
         "output": "str",
         "x": 1080,
         "y": 1280,
@@ -3359,7 +3360,7 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 1620,
+        "x": 1820,
         "y": 1260,
         "wires": [
             []
@@ -3379,7 +3380,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "3600",
+        "repeat": "60",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -3400,7 +3401,7 @@
         "z": "0b147d39fb575ebc",
         "name": "",
         "method": "GET",
-        "ret": "txt",
+        "ret": "obj",
         "paytoqs": "ignore",
         "url": "https://api.openweathermap.org/data/2.5/weather?q=Angers,fr&appid=fc890c8e0b17546a4c8986864eb708bd&units=metric&lang=fr",
         "tls": "",
@@ -3433,7 +3434,9 @@
         "x": 1440,
         "y": 1360,
         "wires": [
-            []
+            [
+                "cae7e63ebbe027a8"
+            ]
         ]
     },
     {
@@ -3441,19 +3444,105 @@
         "type": "function",
         "z": "0b147d39fb575ebc",
         "name": "Traducteur Excel FR",
-        "func": "var data = msg.payload;\n\n// Sécurité : Si la base de données est vide, on annule\nif (!data || data.length === 0) {\n    return null;\n}\n\n// 1. Créer la ligne des titres (en-têtes)\nvar colonnes = Object.keys(data[0]);\nvar texteCSV = colonnes.join(\";\") + \"\\n\";\n\n// 2. Remplir avec les données de la serre\nfor (var i = 0; i < data.length; i++) {\n    var ligne = [];\n    for (var j = 0; j < colonnes.length; j++) {\n        var valeur = data[i][colonnes[j]];\n        \n        // ASTUCE EXPERT : On force les décimales avec une \",\" pour Excel Français\n        if (typeof valeur === \"number\") {\n            valeur = valeur.toString().replace(\".\", \",\");\n        }\n        \n        ligne.push(valeur);\n    }\n    texteCSV += ligne.join(\";\") + \"\\n\";\n}\n\n// On envoie le texte parfait au script de téléchargement\nmsg.payload = texteCSV;\nreturn msg;",
+        "func": "// On récupère les données de la base\nvar data = msg.payload;\nif (!data || data.length === 0) return null;\n\n// Création des titres avec points-virgules\nvar colonnes = Object.keys(data[0]);\nvar csv = colonnes.join(\";\") + \"\\n\";\n\n// Création des lignes avec virgules pour les décimales (Excel FR)\nfor (var i = 0; i < data.length; i++) {\n    var ligne = [];\n    for (var j = 0; j < colonnes.length; j++) {\n        var v = data[i][colonnes[j]];\n        if (typeof v === \"number\") v = v.toString().replace(\".\", \",\");\n        ligne.push(v);\n    }\n    csv += ligne.join(\";\") + \"\\n\";\n}\n\nmsg.payload = csv;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1480,
-        "y": 1200,
+        "x": 1620,
+        "y": 1220,
         "wires": [
             [
                 "0946dc65caa31eef"
             ]
+        ]
+    },
+    {
+        "id": "131c7eac09782d75",
+        "type": "inject",
+        "z": "0b147d39fb575ebc",
+        "name": "Auto-Rafraîchissement",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "action",
+                "v": "refresh",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"download\": false}",
+        "payloadType": "json",
+        "x": 730,
+        "y": 1200,
+        "wires": [
+            [
+                "930ca076dc938cb9"
+            ]
+        ]
+    },
+    {
+        "id": "cae7e63ebbe027a8",
+        "type": "ui_text",
+        "z": "0b147d39fb575ebc",
+        "group": "7bee753c65333fc6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Affichage Météo",
+        "label": "Météo d'Angers",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1720,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "7a4901119bba7be4",
+        "type": "switch",
+        "z": "0b147d39fb575ebc",
+        "name": "bascule",
+        "property": "download",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1500,
+        "y": 1300,
+        "wires": [
+            [
+                "1bc10b1ce159600a"
+            ],
+            []
         ]
     }
 ]
